@@ -1,5 +1,5 @@
 <?php 
-    session_start(); 
+    session_start();
     require_once 'inc/functions.php';
 
     if (!isset($_SESSION['user']))
@@ -8,7 +8,7 @@
     }
 
     $title = 'Member Page'; 
-    require __DIR__ . "/inc/header.php"; 
+    require __DIR__ . "/inc/header.php";
 ?>
 
 <h1>Welcome <?= $_SESSION['user']['firstname'] ?? 'Member' ?>!</h1>

@@ -48,7 +48,7 @@ class MemberController {
         // SQL query to update a member's information
         $sql = "UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email WHERE id = :id";
         // Execute the query with the provided updated data
-        return $this->db->runSQL($sql, $member)->execute();
+        return $this->db->runSQL($sql, $member);
     }
 
     // Method to delete a member record by its ID
@@ -58,7 +58,7 @@ class MemberController {
         $sql = "DELETE FROM users WHERE id = :id";
         $args = ['id' => $id];
         // Execute the query
-        return $this->db->runSQL($sql, $args)->execute();
+        return $this->db->runSQL($sql, $args);
     }
 
     // Method to register a new member
@@ -70,7 +70,7 @@ class MemberController {
                     VALUES (:firstname, :lastname, :email, :password)"; 
 
             // Execute the query with the provided member data
-            $this->db->runSQL($sql, $member)->execute();
+            $this->db->runSQL($sql, $member);
             return true;
 
         } catch (PDOException $e) {

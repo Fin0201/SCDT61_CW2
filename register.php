@@ -1,4 +1,5 @@
 <?php $title = 'Register Page'; require __DIR__ . "/inc/header.php"; ?>
+<?php session_unset(); ?>
 
 <?php require __DIR__ . "/components/reg-form.php"; ?>
 
