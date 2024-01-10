@@ -1,10 +1,10 @@
 <?php
 
-class equipmentController {
+class EquipmentController {
 
     protected $db; // Property to store the database controller object
 
-    // Constructor to initialize the equipmentController with a database controller object
+    // Constructor to initialize the EquipmentController with a database controller object
     public function __construct(DatabaseController $db)
     {
         $this->db = $db;
@@ -58,6 +58,8 @@ class equipmentController {
     // Function to delete a specific equipment entry by its ID
     public function delete_equipment(int $id)
     {
+        $name_sql = "SELECT image FROM equipments WHERE id = :id";
+        
         // SQL query to delete equipment data by ID
         $sql = "DELETE FROM equipments WHERE id = :id";
         $args = ['id' => $id];

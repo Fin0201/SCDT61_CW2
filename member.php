@@ -1,13 +1,13 @@
-<?php 
-    session_start();
+<?php
     require_once 'inc/functions.php';
-
+    session_start();
+    
     if (!isset($_SESSION['user']))
     {
         redirect('login', ["error" => "You need to be logged in to view this page"]);
     }
 
-    $title = 'Member Page'; 
+    $title = 'Member Page';
     require __DIR__ . "/inc/header.php";
 ?>
 

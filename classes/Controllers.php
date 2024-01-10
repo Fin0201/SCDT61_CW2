@@ -39,7 +39,7 @@ class Controllers {
     public function equipment() {
         // Check if equipment controller is null, if so, create a new instance
         if ($this->equipment === null) {
-            $this->equipment = new equipmentController($this->db);
+            $this->equipment = new EquipmentController($this->db);
         }
         return $this->equipment;
     }
@@ -52,5 +52,15 @@ class Controllers {
             $this->members = new MemberController($this->db);
         }
         return $this->members;
+    }
+
+    // Method to get or create a member controller
+    public function userRoles()
+    {
+        // Check if members controller is null, if so, create a new instance
+        if ($this->userRoles === null) {
+            $this->userRoles = new userRoleController($this->db);
+        }
+        return $this->userRoles;
     }
 }

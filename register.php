@@ -1,6 +1,11 @@
-<?php $title = 'Register Page'; require __DIR__ . "/inc/header.php"; ?>
-<?php session_unset(); ?>
+<?php
+    $title = 'Register Page';
+    session_start();
+    session_unset();
+    require __DIR__ . "/inc/header.php";
+    
 
-<?php require __DIR__ . "/components/reg-form.php"; ?>
+    require __DIR__ . "/components/reg-form.php";
 
-<?php require __DIR__ . "/inc/footer.php"; ?>
+    require __DIR__ . "/inc/footer.php";
+?>

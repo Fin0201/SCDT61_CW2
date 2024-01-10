@@ -1,7 +1,7 @@
 <?php
 
 // Class for handling member-related operations
-class MemberController {
+class UserRoleController {
 
     // Protected property to store the database controller instance
     protected $db;
@@ -13,41 +13,29 @@ class MemberController {
         $this->db = $db;
     }
 
-     // Method to retrieve a member record by its ID
-     public function get_role_by_userid(int $id)
-     {
-         // SQL query to select a member by its ID
-         $sql = "SELECT role_id FROM user_roles WHERE user_id = :user_id";
-         $args = ['user_id' => $id];
-         // Execute the query and return the fetched member record
-         return $this->db->runSQL($sql, $args)->fetch();
-     }
-
-    // Method to retrieve a member record by its ID
-    public function get_member_by_id(int $id)
+    public function get_members_by_role_id(int $role_id)
     {
         // SQL query to select a member by its ID
-        $sql = "SELECT * FROM users WHERE id = :id";
-        $args = ['id' => $id];
+        $sql = "SELECT * FROM user_roles WHERE role_id = :role_id";
+        $args = ['role_id' => $role_id];
         // Execute the query and return the fetched member record
         return $this->db->runSQL($sql, $args)->fetch();
     }
 
-    // Method to retrieve a member record by email
-    public function get_member_by_email(string $email)
+    public function get_roles_by_member_id(int $user_id)
     {
-        // SQL query to select a member by email
-        $sql = "SELECT * FROM users WHERE email = :email";
-        $args = ['email' => $email];
+        // SQL query to select a member by its ID
+        $sql = "SELECT * FROM user_roles WHERE user_id = :user_id";
+        $args = ['user_id' => $user_id];
         // Execute the query and return the fetched member record
         return $this->db->runSQL($sql, $args)->fetch();
     }
 
-    // Method to retrieve all member records
-    public function get_all_members()
+    // Method to retrieve all user role records
+    public function get_all_user_roles()
     {
         // SQL query to select all members
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM user_roles";
         // Execute the query and return all fetched records
         return $this->db->runSQL($sql)->fetchAll();
     }
@@ -67,8 +55,6 @@ class MemberController {
         // SQL query to delete a member by its ID
         $sql = "DELETE FROM users WHERE id = :id";
         $args = ['id' => $id];
-
-        $sql2 = "DELETE FROM user_roles WHERE id = (LAST_INSERT_ID())";
         // Execute the query
         return $this->db->runSQL($sql, $args);
     }
@@ -83,11 +69,6 @@ class MemberController {
 
             // Execute the query with the provided member data
             $this->db->runSQL($sql, $member);
-
-            $sql2 = "INSERT INTO user_roles(user_id, role_id)
-                     VALUES (LAST_INSERT_ID(), (SELECT id FROM roles WHERE name = 'user'))";
-            
-            $this->db->runSQL($sql2);
             return true;
 
         } catch (PDOException $e) {
