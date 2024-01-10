@@ -62,3 +62,4 @@ $equipment = $controllers->equipment()->get_all_equipments();
         </tbody>
     </table>
 </div>
+
