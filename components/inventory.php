@@ -7,7 +7,7 @@ require_once './inc/functions.php';
 $equipment = $controllers->equipment()->get_all_equipments();
 ?>
 
-
+<!-- TODO hide manage and add button for regular users -->
 <!-- HTML for displaying the equipment inventory -->
 <div class="container mt-4">
 <a type="button" class="btn btn-primary" href="./add-inventory.php">Add Inventory</a>

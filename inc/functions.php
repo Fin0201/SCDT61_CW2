@@ -13,7 +13,7 @@
         exit;
     }
 
-    // Generates a UUID for the image filenames. The chances of a duplicate filename being used are 1 in 2.71 x 10^18
+    // Generates a UUID for the image filenames. The chances of a duplicate filename being used are 1 in 2.71x10^18
     function guidv4($data = null) {
         // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
         $data = $data ?? random_bytes(16);

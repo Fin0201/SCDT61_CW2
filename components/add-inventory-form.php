@@ -12,13 +12,12 @@
     //TODO Get image format
     $imageName = guidv4();
     $imageExt = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
-    $imagePath = "./images/inventory/" . $imageName . "." . $imageExt;
-    $image = InputProcessor::processString($imagePath);
+    $image = "./images/inventory/" . $imageName . "." . $imageExt;
     $name = InputProcessor::processString($_POST['name']);
     $description = InputProcessor::processString($_POST['description']);
     
     // Validate all inputs
-    $valid = $image['valid'] && $name['valid'] && $description['valid'];
+    $valid = $name['valid'] && $description['valid'];
 
     // Set an error message if any input is invalid
     $message = !$valid ? "Please fix the above errors:" : '';
@@ -27,15 +26,13 @@
     if ($valid)
     {
       // Prepare the data for registration
-      $args = ['image' => $image['value'],                        //TODO If this fails with 'image' => $image,  the image will still uplaod fix later!!!!!!!!!!!!!!!!!!!!!!!! or not bc thats just aa code issue not an input issue
+      $args = ['image' => $image,                        //TODO If this fails with 'image' => $image,  the image will still uplaod fix later!!!!!!!!!!!!!!!!!!!!!!!! or not bc thats just aa code issue not an input issue
               'name' => $name['value'],
               'description' => $description['value'],
               'buy_price' => $_POST['buy_price'],
               'sell_price' => $_POST['sell_price'],
               'stock' => $_POST['stock']];
 
-      
-    
       $max_size_megabytes = 20;
       $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif");
       $uploadOk = true;
@@ -53,7 +50,7 @@
       }
       
       // Allow certain file formats
-      if(in_array($imageExt, $suitableFormats)) {
+      if(!in_array($imageExt, $suitableFormats)) {
         echo "Sorry, Invalid file format.<br>";
         $uploadOk = false;
       }
@@ -63,7 +60,7 @@
         echo "Sorry, your file was not uploaded.";
       // if everything is ok, try to upload file
       } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $image['value'])) {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $image)) {
           echo "The file ". htmlspecialchars(basename($_FILES["fileToUpload"]["name"])). " has been uploaded.";
 
           // Add the equipment to the database
@@ -76,6 +73,7 @@
     }
   }
 ?>
+
 
 <!-- HTML form for registration -->
 <form method="post" action=" <?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
