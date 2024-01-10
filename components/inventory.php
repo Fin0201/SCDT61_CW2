@@ -18,7 +18,10 @@ $equipment = $controllers->equipment()->get_all_equipments();
                 <th>Image</th> 
                 <th>Name</th> 
                 <th>Description</th>
-                <th>manage</th> <!-- TODO Edit and delete if admin Use modals to map the button to the id or something idk  -->
+                <th>Sell Price</th>
+                <th>Buy Price</th>
+                <th>Stock</th>
+                <th>Manage</th> <!-- TODO Edit and delete if admin Use modals to map the button to the id or something idk  -->
             </tr>
         </thead>
         <tbody>
@@ -31,13 +34,11 @@ $equipment = $controllers->equipment()->get_all_equipments();
                              style="width: 100px; height: auto;"> 
                     </td>
                     <td><?= htmlspecialchars($equip['name']) ?></td> 
-                    <td><?= htmlspecialchars($equip['description']) ?></td> 
-
-
-
-                    <!-- <td><?= htmlspecialchars($equip['buy_price']) ?></td>  
-                    <td><?= htmlspecialchars($equip['stock']) ?></td> 
-                    <td><?= htmlspecialchars($equip['sell_price']) ?></td>  -->
+                    <td><?= htmlspecialchars($equip['description']) ?></td>
+                    <td><?= htmlspecialchars($equip['sell_price']) ?></td>
+                    <td><?= htmlspecialchars($equip['buy_price']) ?></td>
+                    <td><?= htmlspecialchars($equip['stock']) ?></td>
+                    
 
 
 

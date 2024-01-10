@@ -14,8 +14,8 @@ class EquipmentController {
     public function create_equipment(array $equipment) 
     {
         // SQL query to insert new equipment data into the equipments table
-        $sql = "INSERT INTO equipments(name, description, image)
-        VALUES (:name, :description, :image);";
+        $sql = "INSERT INTO equipments(name, description, image, sell_price, buy_price, stock)
+        VALUES (:name, :description, :image, :sell_price, :buy_price, :stock);";
         
         // Execute the SQL query with the provided equipment data
         $this->db->runSQL($sql, $equipment);
@@ -58,14 +58,18 @@ class EquipmentController {
     // Function to delete a specific equipment entry by its ID
     public function delete_equipment(int $id)
     {
-        $name_sql = "SELECT image FROM equipments WHERE id = :id";
-        
+        $imageSql = "SELECT image FROM equipments WHERE id = :id";
+
         // SQL query to delete equipment data by ID
         $sql = "DELETE FROM equipments WHERE id = :id";
         $args = ['id' => $id];
+
+        $image = $this->db->runSQL($imageSql, $args)->fetch()['image'];
+
+        unlink($image);
         
         // Execute the delete query
-        return $this->db->runSQL($sql, $args)->execute();
+        return $this->db->runSQL($sql, $args);
     }
 
 }

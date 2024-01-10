@@ -1,9 +1,4 @@
-<?php
-  // Starts the session if it isnt already started
-  if (session_status() == 1) {
-    session_start();
-  }
-?>
+<?php session_start(); ?>
 
 <!doctype html>
 <html lang="en">
@@ -33,7 +28,7 @@
         <a class="nav-link" href="./index.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./Inventory.php">Equipment</a>
+        <a class="nav-link" href="./inventory.php">Equipment</a>
       </li>
       <?php if (!isset($_SESSION['user'])) { ?>
       <li class="nav-item">

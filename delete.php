@@ -1,5 +1,6 @@
-<?php require_once './inc/functions.php' ?>
 <?php
+    require_once './inc/functions.php';
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $action = $_POST['action'];
         switch ($action) {
@@ -7,7 +8,7 @@
                 $id = $_POST['id'];
                 $controllers->equipment()->delete_equipment($id);
                 echo 'HERE';
-                header("Location: Inventory.php");
+                header("Location: inventory.php");
                 break;
         }
     }

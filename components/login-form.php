@@ -1,5 +1,5 @@
 <?php
-
+session_unset();
 // Include the functions file for utility functions
 require_once './inc/functions.php';
 
