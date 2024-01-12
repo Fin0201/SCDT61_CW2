@@ -64,4 +64,13 @@ class Controllers {
         }
         return $this->roles;
     }
+
+    public function userRoles()
+    {
+        // Check if members controller is null, if so, create a new instance
+        if ($this->userRoles === null) {
+            $this->userRoles = new UserRoleController($this->db);
+        }
+        return $this->userRoles;
+    }
 }

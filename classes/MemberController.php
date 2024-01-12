@@ -14,62 +14,6 @@ class MemberController {
     }
 
     // Method to retrieve a member record by its ID
-    public function get_role_by_user_id(int $id)
-    {
-        // SQL query to select a member by its ID
-        $sql = "SELECT role_id FROM user_roles WHERE user_id = :user_id";
-        $args = ['user_id' => $id];
-        // Execute the query and return the fetched member record
-        return $this->db->runSQL($sql, $args)->fetch();
-    }
-
-    public function check_user_has_role(array $args)
-    {
-        
-        // SQL query to select a member by its ID
-        $sql = "SELECT * FROM user_roles WHERE user_id = :user_id AND role_id = :role_id";
-        // $args = ['user_id' => $user_id,
-        //          'role_id' => $role_id];
-        // Execute the query and return the fetched member record
-        $result = $this->db->runSQL($sql, $args)->fetch();
-        // vardump($args);
-        // echo $result;
-        return ($result !== false);
-    }
-
-    public function get_member_roles(array $args)
-    {
-        // SQL query to select a member by its ID
-        $sql = "SELECT * FROM user_roles WHERE user_id = :user_id AND role_id = :role_id";
-        // $args = ['user_id' => $user_id,
-        //          'role_id' => $role_id];
-        // Execute the query and return the fetched member record
-        return $this->db->runSQL($sql, $args)->fetch();
-        // vardump($args);
-        // echo $result;
-        // return ($result !== false);
-    }
-
-    public function give_member_role(array $args)
-    {
-        var_dump($args);
-        $sql = "INSERT INTO user_roles(user_id, role_id)
-        VALUES (:user_id, :role_id);";
-        
-        // Execute the SQL query with the provided equipment data
-        return $this->db->runSQL($sql, $args);
-    }
-
-    public function remove_member_role(array $args)
-    {
-        var_dump($args);
-        $sql = "DELETE FROM user_roles WHERE (user_id = :user_id) AND (role_id = :role_id);";
-        
-        // Execute the SQL query with the provided equipment data
-        return $this->db->runSQL($sql, $args);
-    }
-
-    // Method to retrieve a member record by its ID
     public function get_member_by_id(int $id)
     {
         // SQL query to select a member by its ID

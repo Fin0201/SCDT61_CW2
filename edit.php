@@ -75,18 +75,18 @@
                 foreach ($roles as $role) {
                     $args = ['user_id' => $_POST['id'],
                     'role_id' => $role['id']];
-                    $userRole = $controllers->members()->get_member_roles($args);
+                    $userRole = $controllers->userRoles()->get_member_roles($args);
                     $role_name = $role['name'];
 
                     // Adds the user role if it does not exist and is checked on the form
                     if (!$userRole && isset($_POST[$role['name']])) {
-                        $controllers->members()->give_member_role($args);
+                        $controllers->userRoles()->give_member_role($args);
                         echo "Adding ".$role['name'];
                     }
 
                     // Removes the user role if it already exists and is unchecked in the form
                     if ($userRole && !isset($_POST[$role['name']])) {
-                        $controllers->members()->remove_member_role($args);
+                        $controllers->userRoles()->remove_member_role($args);
                         echo "removing ".$role['name'];
                     }
                 }

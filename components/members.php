@@ -83,7 +83,7 @@
         <?php foreach ($roles as $role):
             $args = ['user_id' => $currentItem['ID'],
                     'role_id' => $role['id']];
-            $hasRole = $controllers->members()->check_user_has_role($args);
+            $hasRole = $controllers->userRoles()->check_user_has_role($args);
             $checkedAttribute = $hasRole ? 'checked' : '';
           ?>
           <div class="form-group">
