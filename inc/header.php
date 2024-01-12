@@ -30,6 +30,9 @@
       <li class="nav-item">
         <a class="nav-link" href="./inventory.php">Equipment</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./members.php">Members</a>
+      </li>
       <?php if (!isset($_SESSION['user'])) { ?>
       <li class="nav-item">
         <a class="nav-link" href="./register.php">register</a>

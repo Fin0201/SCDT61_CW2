@@ -1,5 +1,5 @@
 <?php
-    $title = 'Inventory Page';
+    $title = 'Users Page';
     require __DIR__ . "/inc/header.php";
 
     require 'inc/functions.php';
@@ -8,7 +8,7 @@
         $action = $_POST['action'];
         $id = $_POST['id'];
         if ($action == "edit"){
-            $currentItem = $controllers->equipment()->get_equipment_by_id($id);
+            $currentItem = $controllers->members()->get_member_by_id($id);
             ?>
             <script>
                 $(document).ready(function(){
@@ -18,7 +18,7 @@
             <?php
         }
     }
-    require __DIR__ . "/components/inventory.php";
+    require __DIR__ . "/components/members.php";
 
     require __DIR__ . "/inc/footer.php";
 ?>
