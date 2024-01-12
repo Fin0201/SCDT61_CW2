@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $message = "User details are incorrect.";
       } else {
         // Set user session data on successful login
-        $role = $controllers->members()->get_role_by_userid($member['ID'])['role_id'];
+        $role = $controllers->members()->get_role_by_user_id($member['ID'])['role_id'];
         $_SESSION['user'] = array($member,'role'=>$role);
 
         

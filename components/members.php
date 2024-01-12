@@ -6,6 +6,7 @@
     // Retrieve all member data using the equipment controller
     $members = $controllers->members()->get_all_members();
     $roles = $controllers->roles()->get_all_roles();
+    
 
 ?>
 
@@ -79,16 +80,16 @@
             <label class="form-label">Email</label>
             <input type="email" name="email" class="form-control" value='<?= $currentItem['email'] ?>' required>
           </div>
-        <?php foreach ($roles as $role): ?>
+        <?php foreach ($roles as $role):
+            $args = ['user_id' => $currentItem['ID'],
+                    'role_id' => $role['id']];
+            $hasRole = $controllers->members()->check_user_has_role($args);
+            $checkedAttribute = $hasRole ? 'checked' : '';
+          ?>
           <div class="form-group">
             <label class="form-label"><?= htmlspecialchars($role['name']) ?></label>
-            <?php
-              $userRoles = $controllers->members()->check_user_roles($currentItem['ID']);
-              if 
-              $checked = ()
-              // $checkedAttribute = $hasRole ? 'checked' : '';
-            ?>
-            <input type="checkbox" name="email" class="form-control" value=<?= $checkedAttribute; ?> required>
+            <input type="checkbox" name="<?= htmlspecialchars($role['name']) ?>" class="form-control" value="<?= htmlspecialchars($role['id']) ?>"<?= $checkedAttribute; ?>>
+            <!-- <input type="hidden" name="<?= htmlspecialchars($role['name']) ?>" value="-1" /> -->
           </div>
         <?php endforeach; ?>
           <div class="modal-footer">
