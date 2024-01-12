@@ -1,4 +1,9 @@
 <?php
+// Start the session to maintain user state
+session_start();
+// Clear all session variables
+session_unset(); 
+
 // Include the functions file for utility functions
 require_once './inc/functions.php';
 
@@ -27,22 +32,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       if (!$member) {
         // Set error message if login failed
         $message = "User details are incorrect.";
-      } else {
-        // Set user session data on successful login
-        $roleId = $controllers->userRoles()->get_role_by_user_id($member['ID'])['role_id'];
-        $role = $controllers->roles()->get_role_by_id($roleId);
-        $_SESSION['user'] = array($member,'role'=>$role['name']);
+     } else {
+         // Set user session data on successful login
+         $_SESSION['user'] = $member;
 
-        echo $roleId;
-        echo $roleName['name'];
+         echo $member['user_type'];
 
-        
-        // Redirect based on user type
-        if ($_SESSION['user']['role'] == "Admin") {
-          redirect('.\Inventory'); // Redirect admin users
-        } else {
-          redirect('member'); // Redirect non-admin users
-        }
+         // Redirect based on user type
+      //    if ($member['user_type'] === 'admin') {
+      //     redirect('.\Inventory.php'); // Redirect admin users
+      // } else {
+      //     redirect('member'); // Redirect non-admin users
+      // }
       }
 
     }

@@ -1,7 +1,7 @@
 <?php
 
 // Class for handling member-related operations
-class UserRoleControllerController {
+class UserRoleController {
 
     // Protected property to store the database controller instance
     protected $db;
@@ -26,7 +26,7 @@ class UserRoleControllerController {
     public function check_user_has_role(array $args)
     {
         $sql = "SELECT * FROM user_roles WHERE user_id = :user_id AND role_id = :role_id";
-        $result = $this->db->runSQL($sql, $args)->fetch();
+        return $this->db->runSQL($sql, $args)->fetch();
     }
 
     public function get_member_roles(array $args)

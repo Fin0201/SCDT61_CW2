@@ -27,6 +27,7 @@
             </tr>
         </thead>
         <tbody>
+        <?php var_dump($_SESSION); ?>
             <?php foreach ($members as $member): ?> <!-- Loop through each member item -->
                 <tr>
                     <td><?= htmlspecialchars($member['firstname']) ?></td> 
@@ -36,8 +37,7 @@
                     <td><?= htmlspecialchars($member['modifiedOn']) ?></td>
                     
                     <?php if ($_SESSION) {
-                        
-                        if($_SESSION['user']['role'] == 2) { ?>
+                        if($_SESSION['user']['role'] == "Admin") { ?>
                         <td style="max-width: 50px;">
                             <form action = "./members.php" method="post">
                                 <input type="hidden" name="id" value="<?= $member['ID'] ?>">

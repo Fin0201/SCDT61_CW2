@@ -41,7 +41,7 @@
                     
                     <?php if ($_SESSION) {
                         
-                        if($_SESSION['user']['role'] == 2) { ?>
+                        if($_SESSION['user']['role'] == "Admin") { ?>
                         <td style="max-width: 50px;">
                             <form action = "./inventory.php" method="post">
                                 <input type="hidden" name="id" value="<?= $equip['id'] ?>">

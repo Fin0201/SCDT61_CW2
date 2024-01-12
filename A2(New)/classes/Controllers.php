@@ -6,8 +6,6 @@ class Controllers {
     protected $db = null;
     protected $members = null;
     protected $equipment = null;
-    protected $roles = null;
-    protected $userRoles = null;
 
     // Constructor method for the Controllers class
     public function __construct()
@@ -41,7 +39,7 @@ class Controllers {
     public function equipment() {
         // Check if equipment controller is null, if so, create a new instance
         if ($this->equipment === null) {
-            $this->equipment = new EquipmentController($this->db);
+            $this->equipment = new equipmentController($this->db);
         }
         return $this->equipment;
     }
@@ -54,24 +52,5 @@ class Controllers {
             $this->members = new MemberController($this->db);
         }
         return $this->members;
-    }
-
-    // Method to get or create a member controller
-    public function roles()
-    {
-        // Check if members controller is null, if so, create a new instance
-        if ($this->roles === null) {
-            $this->roles = new RoleController($this->db);
-        }
-        return $this->roles;
-    }
-
-    public function userRoles()
-    {
-        // Check if members controller is null, if so, create a new instance
-        if ($this->userRoles === null) {
-            $this->userRoles = new UserRoleController($this->db);
-        }
-        return $this->userRoles;
     }
 }
