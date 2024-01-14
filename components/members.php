@@ -23,11 +23,12 @@
     <h2>Members</h2> 
     <table class="table table-striped"> 
             <tr>
-                <th>First Name</th> 
-                <th>last Name</th> 
+                <th>First Name</th>
+                <th>last Name</th>
                 <th>Email</th>
                 <th>Created On</th>
                 <th>Last Modified On</th>
+                <th>Roles</th>
                 <?php if ($admin): ?>
                   <th>Manage</th>
                 <?php endif; ?>
@@ -37,11 +38,26 @@
             <!-- Loop through each member item -->
             <?php foreach ($members as $member): ?>
                 <tr>
-                    <td><?= htmlspecialchars($member['firstname']) ?></td> 
+                    <td><?= htmlspecialchars($member['firstname']) ?></td>
                     <td><?= htmlspecialchars($member['lastname']) ?></td>
                     <td><?= htmlspecialchars($member['email']) ?></td>
                     <td><?= htmlspecialchars($member['createdOn']) ?></td>
                     <td><?= htmlspecialchars($member['modifiedOn']) ?></td>
+                    <td><?php
+                    $userRoles = (array) null; 
+                    foreach ($roles as $role){
+                      $args = array(
+                        'user_id' => $member['ID'],
+                        'role_id' => $role['id']
+                      );
+
+                      // Checks if the selected user has the role
+                      $hasRole = $controllers->userRoles()->check_user_has_role($args);
+                      if ($hasRole) {
+                        array_push($userRoles, $role['name']);
+                      }
+                    }
+                    echo implode(", ", $userRoles); ?></td>
                     
                     <?php if ($admin) {
                         if($_SESSION['user']['role'] == "Admin") { ?>
@@ -91,11 +107,6 @@
           <?php
           $i = 0;
           foreach ($roles as $role):
-            // Skips over the default 'User' role because every user is given it upon account creation and there is no reason to remove it.
-            if ($role['name'] == 'Member') {
-              continue;
-            }
-
             $args = array(
               'user_id' => $currentItem['ID'],
               'role_id' => $role['id']

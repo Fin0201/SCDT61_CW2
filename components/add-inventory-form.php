@@ -4,10 +4,13 @@
 
   // Initialize a variable to store any error message from the query string
   $message = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '';
+  $categories = $controllers->categories()->get_all_categories();
+  $suppliers = $controllers->suppliers()->get_all_suppliers();
 
   // Check if the form is submitted via POST
   if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
+    echo "<br>".var_dump($_POST)."<br>";
     // Process the submitted form data
     //TODO Get image format
     $imageName = guidv4();
@@ -31,7 +34,9 @@
               'description' => $description['value'],
               'buy_price' => $_POST['buy_price'],
               'sell_price' => $_POST['sell_price'],
-              'stock' => $_POST['stock']];
+              'stock' => $_POST['stock'],
+              'categoryId' => $_POST['categoryId'],
+              'supplierId' => "201"];
 
       $max_size_megabytes = 20;
       $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif");
@@ -112,6 +117,15 @@
               <div class="form-outline mb-4">
                 <input required type="number" id="stock" name="stock" class="form-control form-control-lg" placeholder="Equipment stock" value="<?= htmlspecialchars($stock['value'] ?? '') ?>"/>
                 <small class="text-danger"><?= htmlspecialchars($stock['error'] ?? '') ?></small>
+              </div>
+
+              <div class="form-outline mb-4">
+                <select required type="select" id="categoryId" name="categoryId" class="form-control form-control-lg" placeholder="Equipment category">
+                  <?php foreach ($categories as $category): ?>
+                    <option value="<?php $category['id'] ?>"><?= $category['name'] ?></option>
+                  <?php endforeach; ?>
+                </select>
+                <small class="text-danger"><?= htmlspecialchars($categoryId['error'] ?? '') ?></small>
               </div>
 
               <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Add Equipment</button>

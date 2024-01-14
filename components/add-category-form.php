@@ -23,19 +23,19 @@
             // Prepare the data for registration
             $args = ['name' => $name['value']];
         
-            // Add the role to the database
-            $Role = $controllers->roles()->add_role($args);
-            if ($Role) {
-                redirect("Roles", ["message" => "Role successfully added!"]);
+            // Add the category to the database
+            $category = $controllers->categories()->add_category($args);
+            if ($category) {
+                redirect("categories", ["message" => "category successfully added!"]);
             } else {
-                echo "Sorry, there was an error adding the role.";
+                echo "Sorry, there was an error adding the category.";
             }
         }
     }
 ?>
 
 
-<!-- HTML form for adding roles -->
+<!-- HTML form for adding categories -->
 <form method="post" action=" <?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
   <section class="vh-100">
     <div class="container py-5 h-75">
@@ -44,14 +44,14 @@
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
 
-              <h3 class="mb-2">Add role</h3>
+              <h3 class="mb-2">Add category</h3>
 
               <div class="form-outline mb-4">
-                <input required type="text" id="name" name="name" class="form-control form-control-lg" placeholder="Role name" value="<?= htmlspecialchars($name['value'] ?? '') ?>"/>
+                <input required type="text" id="name" name="name" class="form-control form-control-lg" placeholder="Category name" value="<?= htmlspecialchars($name['value'] ?? '') ?>"/>
                 <small class="text-danger"><?= htmlspecialchars($name['error'] ?? '') ?></small>
               </div>
 
-              <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Add Role</button>
+              <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Add category</button>
 
               <?php if ($message): ?>
                 <div class="alert alert-danger mt-4">

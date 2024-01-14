@@ -66,6 +66,21 @@
             }
         }
 
+         // Static method to process and validate an phone number
+         public static function processPhoneNumber(string $phoneNumber): array {
+            // Check if the phone number is empty
+            if (empty($phoneNumber)) {
+                return self::returnInput("Phone number is empty.", false);
+            }
+
+            // Validate the phone number
+            if (preg_match('/^[0-9]{11}+$/', $phoneNumber)) {
+                return self::returnInput($phoneNumber, true);
+            } else {
+                return self::returnInput("Phone number is invalid.", false);
+            }
+        }
+
         // Private static method to format the return value of the input processing
         private static function returnInput(string $value, bool $isValid) : array {
             return [

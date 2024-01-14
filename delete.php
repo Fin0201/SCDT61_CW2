@@ -19,6 +19,14 @@
                 $controllers->roles()->delete_role($id);
                 header("Location: roles.php");
                 break;
+            case "suppliers":
+                $controllers->suppliers()->delete_supplier($id);
+                header("Location: suppliers.php");
+                break;
+            case "categories":
+                $controllers->categories()->delete_category($id);
+                header("Location: categories.php");
+                break;
         }
     }
 ?>

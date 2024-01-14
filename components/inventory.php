@@ -22,12 +22,14 @@
     <h2>Equipment Inventory</h2> 
     <table class="table table-striped"> 
             <tr>
-                <th>Image</th> 
-                <th>Name</th> 
+                <th>Image</th>
+                <th>Name</th>
                 <th>Description</th>
                 <th>Buy Price</th>
                 <th>Sell Price</th>
                 <th>Stock</th>
+                <th>Category</th>
+                <th>Supplier</th>
                 <?php if ($admin): ?>
                   <th>Manage</th>
                 <?php endif; ?>
@@ -42,11 +44,13 @@
                     alt="Image of <?= htmlspecialchars($equip['description']) ?>"
                     style="width: 100px; height: auto;">
                 </td>
-                <td><?= htmlspecialchars($equip['name']) ?></td> 
+                <td><?= htmlspecialchars($equip['name']) ?></td>
                 <td><?= htmlspecialchars($equip['description']) ?></td>
                 <td><?= htmlspecialchars($equip['buy_price']) ?></td>
                 <td><?= htmlspecialchars($equip['sell_price']) ?></td>
                 <td><?= htmlspecialchars($equip['stock']) ?></td>
+                <td><?= htmlspecialchars($equip['category']) ?></td>
+                <td><?= htmlspecialchars($equip['supplier']) ?></td>
                 
                 <?php if ($admin) { ?>
                     <td style="max-width: 50px;">

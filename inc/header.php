@@ -41,10 +41,16 @@
       <li class="nav-item">
         <a class="nav-link" href="./roles.php">Roles</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./suppliers.php">Suppliers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./categories.php">Categories</a>
+      </li>
 
       <?php if (!isset($_SESSION['user'])) { ?>
       <li class="nav-item">
-        <a class="nav-link" href="./register.php">register</a>
+        <a class="nav-link" href="./register.php">Register</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./login.php">Login</a>
