@@ -56,7 +56,6 @@ class UserRoleController {
 
     public function remove_member_role(array $args)
     {
-        var_dump($args);
         $sql = "DELETE FROM user_roles WHERE (user_id = :user_id) AND (role_id = :role_id);";
         
         // Execute the SQL query with the provided equipment data

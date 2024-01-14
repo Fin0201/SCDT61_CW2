@@ -1,13 +1,18 @@
 <?php
-    $message = isset($_GET['message']) ? htmlspecialchars($_GET['message']) : '';
-    // Include the functions file for necessary functions and classes
-    require_once './inc/functions.php';
+  $message = isset($_GET['message']) ? htmlspecialchars($_GET['message']) : '';
+  // Include the functions file for necessary functions and classes
+  require_once './inc/functions.php';
 
-    // Retrieve all member and role data using their controllers
-    $members = $controllers->members()->get_all_members();
-    $roles = $controllers->roles()->get_all_roles();
-    
+  // Retrieve all member and role data using their controllers
+  $members = $controllers->members()->get_all_members();
+  $roles = $controllers->roles()->get_all_roles();
 
+  $admin = false;
+  if ($_SESSION) {
+    if ($_SESSION['user']['role'] == "Admin") {
+      $admin = true;
+    }
+  }
 ?>
 
 <!-- TODO hide manage and add button for regular users -->
@@ -22,8 +27,10 @@
                 <th>last Name</th> 
                 <th>Email</th>
                 <th>Created On</th>
-                <th>Last Modified</th>
-                <th>Manage</th>
+                <th>Last Modified On</th>
+                <?php if ($admin): ?>
+                  <th>Manage</th>
+                <?php endif; ?>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +43,7 @@
                     <td><?= htmlspecialchars($member['createdOn']) ?></td>
                     <td><?= htmlspecialchars($member['modifiedOn']) ?></td>
                     
-                    <?php if ($_SESSION) {
+                    <?php if ($admin) {
                         if($_SESSION['user']['role'] == "Admin") { ?>
                         <td style="max-width: 50px;">
                             <form action = "./members.php" method="post">
@@ -52,7 +59,7 @@
                         </td>
                     <?php }
                     }
-                   endforeach; ?>
+                    endforeach; ?>
         </tbody>
     </table>
 </div>
@@ -67,7 +74,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="./edit.php" method="post" enctype="multipart/form-data">
+        <form action="./edit.php" method="post">
           <div class ="form-group">
             <label class="form-label">First Name</label>
             <input type="text" name="firstname" class="form-control" value='<?= $currentItem['firstname']; ?>' required>
@@ -81,9 +88,11 @@
             <input type="email" name="email" class="form-control" value='<?= $currentItem['email'] ?>' required>
           </div>
           <!-- Loop through each role in the roles table -->
-          <?php foreach ($roles as $role):
+          <?php
+          $i = 0;
+          foreach ($roles as $role):
             // Skips over the default 'User' role because every user is given it upon account creation and there is no reason to remove it.
-            if ($role['name'] == 'User') {
+            if ($role['name'] == 'Member') {
               continue;
             }
 
@@ -100,9 +109,12 @@
           ?>
           <div class="form-group">
             <label class="form-label"><?= htmlspecialchars($role['name']) ?></label>
-            <input type="checkbox" name="<?= htmlspecialchars($role['name']) ?>" class="form-control" value="<?= htmlspecialchars($role['id']) ?>"<?= $checkedAttribute ?>>
+            <input type="checkbox" name="role<?= $role['id'] ?>" class="form-control" value="<?= $role['id'] ?>" <?= $checkedAttribute ?>>
           </div>
-          <?php endforeach; ?>
+        <?php
+          $i++;
+          endforeach;
+        ?>
             <div class="modal-footer">
             <input type="hidden" name="action" value="members">
             <input type="hidden" name="id" value="<?= $currentItem['ID'] ?>">

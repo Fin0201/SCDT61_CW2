@@ -46,7 +46,7 @@ class RoleController {
     public function delete_role(int $id)
     {
         // SQL query to delete a role by its ID
-        $sql = "DELETE FROM roels WHERE id = :id";
+        $sql = "DELETE FROM roles WHERE id = :id";
         $args = ['id' => $id];
 
         $sql2 = "DELETE FROM user_roles WHERE role_id = (LAST_INSERT_ID())";

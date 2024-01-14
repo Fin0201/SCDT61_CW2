@@ -11,4 +11,6 @@
 
 <h1>Welcome <?= $_SESSION['user']['firstname'] ?? 'Member' ?>!</h1>
 
+<a type="button" class="btn btn-primary" href="./login.php">Logout</a>
+
 <?php require __DIR__ . "/inc/footer.php"; ?>

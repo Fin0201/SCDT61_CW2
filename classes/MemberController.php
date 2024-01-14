@@ -78,7 +78,7 @@ class MemberController {
             $this->db->runSQL($sql, $member);
 
             $sql2 = "INSERT INTO user_roles(user_id, role_id)
-                     VALUES (LAST_INSERT_ID(), (SELECT id FROM roles WHERE name = 'customer'))";
+                     VALUES (LAST_INSERT_ID(), (SELECT id FROM roles WHERE name = 'Member'))";
             
             $this->db->runSQL($sql2);
             return true;

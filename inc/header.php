@@ -38,6 +38,10 @@
       <li class="nav-item">
         <a class="nav-link" href="./members.php">Members</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./roles.php">Roles</a>
+      </li>
+
       <?php if (!isset($_SESSION['user'])) { ?>
       <li class="nav-item">
         <a class="nav-link" href="./register.php">register</a>
@@ -45,9 +49,10 @@
       <li class="nav-item">
         <a class="nav-link" href="./login.php">Login</a>
       </li>
+      
       <?php } else { ?>
       <li class="nav-item">
-        <a class="nav-link" href="./account.php">Account</a>
+        <a class="nav-link" href="./member.php">Account</a>
       </li>
       <?php } ?>
     </ul>
