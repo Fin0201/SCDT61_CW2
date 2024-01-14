@@ -3,7 +3,7 @@
     // Include the functions file for necessary functions and classes
     require_once './inc/functions.php';
 
-    // Retrieve all member data using the equipment controller
+    // Retrieve all member and role data using their controllers
     $members = $controllers->members()->get_all_members();
     $roles = $controllers->roles()->get_all_roles();
     
@@ -27,8 +27,8 @@
             </tr>
         </thead>
         <tbody>
-        <?php var_dump($_SESSION); ?>
-            <?php foreach ($members as $member): ?> <!-- Loop through each member item -->
+            <!-- Loop through each member item -->
+            <?php foreach ($members as $member): ?>
                 <tr>
                     <td><?= htmlspecialchars($member['firstname']) ?></td> 
                     <td><?= htmlspecialchars($member['lastname']) ?></td>
@@ -80,25 +80,36 @@
             <label class="form-label">Email</label>
             <input type="email" name="email" class="form-control" value='<?= $currentItem['email'] ?>' required>
           </div>
-        <?php foreach ($roles as $role):
-            $args = ['user_id' => $currentItem['ID'],
-                    'role_id' => $role['id']];
+          <!-- Loop through each role in the roles table -->
+          <?php foreach ($roles as $role):
+            // Skips over the default 'User' role because every user is given it upon account creation and there is no reason to remove it.
+            if ($role['name'] == 'User') {
+              continue;
+            }
+
+            $args = array(
+              'user_id' => $currentItem['ID'],
+              'role_id' => $role['id']
+            );
+
+            // Checks if the selected user has the role
             $hasRole = $controllers->userRoles()->check_user_has_role($args);
+
+            // If the user has the role, this variable will tick the checkbox, otherwise it will leave it unchecked
             $checkedAttribute = $hasRole ? 'checked' : '';
           ?>
           <div class="form-group">
             <label class="form-label"><?= htmlspecialchars($role['name']) ?></label>
-            <input type="checkbox" name="<?= htmlspecialchars($role['name']) ?>" class="form-control" value="<?= htmlspecialchars($role['id']) ?>"<?= $checkedAttribute; ?>>
-            <!-- <input type="hidden" name="<?= htmlspecialchars($role['name']) ?>" value="-1" /> -->
+            <input type="checkbox" name="<?= htmlspecialchars($role['name']) ?>" class="form-control" value="<?= htmlspecialchars($role['id']) ?>"<?= $checkedAttribute ?>>
           </div>
-        <?php endforeach; ?>
-          <div class="modal-footer">
-          <input type="hidden" name="action" value="members">
-          <input type="hidden" name="id" value="<?= $currentItem['ID'] ?>">
-          <button type="submit" class="btn btn-primary">Confirm</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </form>
-      </div>
+          <?php endforeach; ?>
+            <div class="modal-footer">
+            <input type="hidden" name="action" value="members">
+            <input type="hidden" name="id" value="<?= $currentItem['ID'] ?>">
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

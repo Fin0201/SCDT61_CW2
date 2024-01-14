@@ -57,10 +57,12 @@ class MemberController {
     {
         // SQL query to delete a member by its ID
         $sql = "DELETE FROM users WHERE id = :id";
+        $sql2 = "DELETE FROM user_roles WHERE user_id = :id)";
         $args = ['id' => $id];
 
-        $sql2 = "DELETE FROM user_roles WHERE user_id = (LAST_INSERT_ID())";
-        // Execute the query
+        
+        // Execute the queries
+        $this->db->runSQL($sql2, $args);
         return $this->db->runSQL($sql, $args);
     }
 

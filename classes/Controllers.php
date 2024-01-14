@@ -12,8 +12,7 @@ class Controllers {
     // Constructor method for the Controllers class
     public function __construct()
     {
-        // Temporary database connection settings
-        // TODO: Move these to a configuration file or environment variables for better security and flexibility
+        // Database connection settings
         $type ='mysql';
         $server = '127.0.0.1'; // Localhost server
         $db = 'shop2'; // Database name

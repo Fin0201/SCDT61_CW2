@@ -51,47 +51,45 @@
                 // Returns the user back to the inventory page
                 header('Location: inventory.php');
                 break;
+                 
             case "members":
+                // Gets the updated information submitted in the form
                 $id = $_POST['id'];
                 $firstname = $_POST['firstname'];
                 $lastname = $_POST['lastname'];
                 $email = $_POST['email'];
+
                 $args = array(
                     'id'=>$id,
                     'firstname'=>$firstname,
                     'lastname'=>$lastname,
                     'email'=>$email,
                 );
-                // var_dump($args);
+
                 // Updates the user with the given information
                 $controllers->members()->update_member($args);
-                // Returns the user back to the users page
-                
+
+                // Retrieves all of the different roles in the 'roles' table
                 $roles = $controllers->roles()->get_all_roles();
-                
 
-                // var_dump($_POST);
-                
+                // Iterates through each role in the database
                 foreach ($roles as $role) {
-                    $args = ['user_id' => $_POST['id'],
-                    'role_id' => $role['id']];
-                    $userRole = $controllers->userRoles()->get_member_roles($args);
-                    $role_name = $role['name'];
-
-                    // Adds the user role if it does not exist and is checked on the form
-                    if (!$userRole && isset($_POST[$role['name']])) {
+                    $args = array(
+                        'user_id' => $_POST['id'],
+                        'role_id' => $role['id'],
+                    );
+                    
+                    // Checks if the corresponding role's checkbox was ticked on the form
+                    if (isset($_POST[$role['name']])) {
+                        // Adds the user role if it is checked on the form
                         $controllers->userRoles()->give_member_role($args);
-                        echo "Adding ".$role['name'];
-                    }
-
-                    // Removes the user role if it already exists and is unchecked in the form
-                    if ($userRole && !isset($_POST[$role['name']])) {
+                    } else {
+                        // Removes the user role if it is not checked on the form
                         $controllers->userRoles()->remove_member_role($args);
-                        echo "removing ".$role['name'];
                     }
                 }
                 
-                
+                // Returns the user back to the users page
                 header('Location: members.php');
                 break;
         }

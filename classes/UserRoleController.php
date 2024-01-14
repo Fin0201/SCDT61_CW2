@@ -1,12 +1,12 @@
 <?php
 
-// Class for handling member-related operations
+// Class for handling user role-related operations
 class UserRoleController {
 
     // Protected property to store the database controller instance
     protected $db;
 
-    // Constructor to initialize the MemberController with a DatabaseController instance
+    // Constructor to initialize the UserRoleController with a DatabaseController instance
     public function __construct(DatabaseController $db)
     {
         // Assign the provided DatabaseController instance to the db property
@@ -39,11 +39,19 @@ class UserRoleController {
 
     public function give_member_role(array $args)
     {
-        $sql = "INSERT INTO user_roles(user_id, role_id)
-        VALUES (:user_id, :role_id);";
-        
-        // Execute the SQL query with the provided equipment data
-        return $this->db->runSQL($sql, $args);
+        try {
+            $sql = "INSERT INTO user_roles(user_id, role_id)
+            VALUES (:user_id, :role_id);";
+            
+            // Execute the SQL query with the provided equipment data
+            return $this->db->runSQL($sql, $args);
+        } catch (PDOException $e) {
+            // Handle specific error codes (like duplicate entry)
+            if ($e->getCode() == 23000) { // Possible duplicate entry
+                return false;
+            }
+            throw $e;
+        }
     }
 
     public function remove_member_role(array $args)
