@@ -14,7 +14,6 @@
     }
 ?>
 
-<!-- TODO hide manage and add button for regular users -->
 <!-- HTML for displaying the categories inventory -->
 <div class="container mt-4">
 <a type="button" class="btn btn-primary" href="./add-category.php">Add category</a>

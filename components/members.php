@@ -15,7 +15,6 @@
   }
 ?>
 
-<!-- TODO hide manage and add button for regular users -->
 <!-- HTML for displaying the members -->
 <div class="container mt-4">
 <a type="button" class="btn btn-primary" href="./register.php">Register Member</a>

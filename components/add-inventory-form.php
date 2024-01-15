@@ -12,7 +12,6 @@
   {
     echo "<br>".var_dump($_POST)."<br>";
     // Process the submitted form data
-    //TODO Get image format
     $imageName = guidv4();
     $imageExt = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
     $image = "./images/inventory/" . $imageName . "." . $imageExt;
@@ -29,7 +28,7 @@
     if ($valid)
     {
       // Prepare the data for registration
-      $args = ['image' => $image,                        //TODO If this fails with 'image' => $image,  the image will still uplaod fix later!!!!!!!!!!!!!!!!!!!!!!!! or not bc thats just aa code issue not an input issue
+      $args = ['image' => $image,
               'name' => $name['value'],
               'description' => $description['value'],
               'buy_price' => $_POST['buy_price'],
@@ -49,7 +48,7 @@
       }
 
       // Check file size
-      if ($_FILES["fileToUpload"]["size"] > $maxSizeMegabytes * 1048576) { // Converts the size to MB   TODO Test
+      if ($_FILES["fileToUpload"]["size"] > $maxSizeMegabytes * 1048576) { // Converts the size to MB
         echo "Image is too large. Images must be smaller than " . $maxSizeMegabytes . "MB<br>";
         $uploadOk = false;
       }

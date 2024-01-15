@@ -21,7 +21,7 @@
                 if ($image['name'] != "") {
                     $imageName = guidv4();
                     $imageExt = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
-                    $image = "./images/inventory/" . $imageName . "." . $imageExt;
+                    $image = "./images/inventory/".$imageName.".".$imageExt;
                     $maxSizeMegabytes = 20;
                     $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif");
                     $uploadOk = true;
@@ -32,7 +32,7 @@
                     }
 
                     // Check file size
-                    if ($_FILES["fileToUpload"]["size"] > $maxSizeMegabytes * 1048576) { // Converts the size to MB   TODO Test
+                    if ($_FILES["fileToUpload"]["size"] > $maxSizeMegabytes * 1048576) {
                         $uploadOk = false;
                     }
                     

@@ -57,7 +57,7 @@ class MemberController {
     {
         // SQL query to delete a member by its ID
         $sql = "DELETE FROM users WHERE id = :id";
-        $sql2 = "DELETE FROM user_roles WHERE user_id = :id)";
+        $sql2 = "DELETE FROM user_roles WHERE user_id = :id";
         $args = ['id' => $id];
 
         
