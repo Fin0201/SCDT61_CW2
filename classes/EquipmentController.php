@@ -49,7 +49,7 @@ class EquipmentController {
     public function update_equipment(array $equipment)
     {
         // SQL query to update equipment data
-        $sql = "UPDATE equipments SET name = :name, description = :description, image = :image, sell_price = :sell_price, buy_price = :buy_price, stock, = :stock supplierId = :supplierId, categoryId = :categoryId WHERE id = :id";
+        $sql = "UPDATE equipments SET name = :name, description = :description, image = :image, sell_price = :sell_price, buy_price = :buy_price, stock = :stock, supplierId = :supplierId, categoryId = :categoryId WHERE id = :id";
         
         // Execute the update query with the provided equipment data
         return $this->db->runSQL($sql, $equipment)->execute();
@@ -71,7 +71,6 @@ class EquipmentController {
         // Execute the delete query
         return $this->db->runSQL($sql, $args);
     }
-
 }
 
 ?>

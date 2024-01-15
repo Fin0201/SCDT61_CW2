@@ -15,19 +15,31 @@
                 $sellprice = $_POST['sell_price'];
                 $buyprice = $_POST['buy_price'];
                 $stock = $_POST['stock'];
+                $categoryId = $_POST['categoryId'];
+                $supplierId = $_POST['supplierId'];
                 
                 if ($image['name'] != "") {
-                    $imagename = $image['name'];
-                    // Temporary image name
-                    $imagetempname = $image['tmp_name'];
-                    // Removes the file extension from the uploaded image
-                    $fileExt = explode('.', $imagename);
-                    // Changes the string to lowercase
-                    $extension = strtolower(end($fileExt));
-                    // Createsa uniqueid for the file
-                    $newfile = guidv4().'.'.$extension;
-                    // Sets the destination of the file
-                    $filedestination = 'images/inventory/'.$newfile;
+                    $imageName = guidv4();
+                    $imageExt = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
+                    $image = "./images/inventory/" . $imageName . "." . $imageExt;
+                    $maxSizeMegabytes = 20;
+                    $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif");
+                    $uploadOk = true;
+
+                    // Check if image file is a actual image
+                    if(!getimagesize($_FILES["fileToUpload"]["tmp_name"])) {
+                        $uploadOk = false;
+                    }
+
+                    // Check file size
+                    if ($_FILES["fileToUpload"]["size"] > $maxSizeMegabytes * 1048576) { // Converts the size to MB   TODO Test
+                        $uploadOk = false;
+                    }
+                    
+                    // Allow certain file formats
+                    if(!in_array($imageExt, $suitableFormats)) {
+                        $uploadOk = false;
+                    }
                     // Moves the file to the given location
                     move_uploaded_file($imagetempname, $filedestination);
                     // Deletes the original file
@@ -37,6 +49,7 @@
                     $filedestination = $controllers->equipment()->get_equipment_by_id($id)['image'];
                 }
                 
+                var_dump($_POST);
                 $args = array(
                     'id'=>$id,
                     'name'=>$name,
@@ -45,6 +58,8 @@
                     'sell_price'=>$sellprice,
                     'buy_price'=>$buyprice,
                     'stock'=>$stock,
+                    'categoryId'=>$categoryId,
+                    'supplierId'=>$supplierId,
                 );
 
                 // Creates the equipment

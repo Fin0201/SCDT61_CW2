@@ -5,6 +5,8 @@
 
     // Retrieve all equipment data using the equipment controller
     $equipment = $controllers->equipment()->get_all_equipments();
+    $categories = $controllers->categories()->get_all_categories();
+    $suppliers = $controllers->suppliers()->get_all_suppliers();
 
     $admin = false;
     if ($_SESSION) {
@@ -49,8 +51,14 @@
                 <td><?= htmlspecialchars($equip['buy_price']) ?></td>
                 <td><?= htmlspecialchars($equip['sell_price']) ?></td>
                 <td><?= htmlspecialchars($equip['stock']) ?></td>
-                <td><?= htmlspecialchars($equip['category']) ?></td>
-                <td><?= htmlspecialchars($equip['supplier']) ?></td>
+                <td><?php
+                  $category = $controllers->categories()->get_category_by_id($equip['categoryId']);
+                  echo htmlspecialchars($category['name']);
+                ?></td>
+                <td><?php
+                  $supplier = $controllers->suppliers()->get_supplier_by_id($equip['supplierId']);
+                  echo htmlspecialchars($supplier['name']);
+                ?></td>
                 
                 <?php if ($admin) { ?>
                     <td style="max-width: 50px;">
@@ -102,6 +110,27 @@
           <div class = "form-group" style="width: 150px;">
             <label class="form-label">Item Stock</label>
             <input type="number" min=0 name="stock" class="form-control" value=<?= $currentItem['stock'] ?> required>
+          </div>
+          <div class="form-outline mb-4">
+            <select required type="select" id="categoryId" name="categoryId" class="form-control form-control-lg" placeholder="Equipment category">
+              <option value="" disabled>Select a category</option>
+              <?php foreach ($categories as $category):
+                $selected = ($currentItem['categoryId'] == $category['id']) ? 'selected' : ''; ?>
+                <option selected="<?= $selected ?>" value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+              <?php endforeach; ?>
+            </select>
+            <small class="text-danger"><?= htmlspecialchars($categoryId['error'] ?? '') ?></small>
+          </div>
+
+          <div class="form-outline mb-4">
+            <select required type="select" id="supplierId" name="supplierId" class="form-control form-control-lg" placeholder="Equipment supplier">
+              <option value="" disabled selected>Select a supplier</option>
+              <?php foreach ($suppliers as $supplier):
+                $selected = ($currentItem['supplierId'] == $supplier['id']) ? 'selected' : ''; ?>
+                <option <?= $selected ?> value="<?= $supplier['id'] ?>"><?= $supplier['name'] ?></option>
+              <?php endforeach; ?>
+            </select>
+            <small class="text-danger"><?= htmlspecialchars($categoryId['error'] ?? '') ?></small>
           </div>
           <div class = "form-group" style="width: 150px;">
             <label class="form-label">Item Image</label>

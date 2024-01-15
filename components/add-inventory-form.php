@@ -36,9 +36,9 @@
               'sell_price' => $_POST['sell_price'],
               'stock' => $_POST['stock'],
               'categoryId' => $_POST['categoryId'],
-              'supplierId' => "201"];
+              'supplierId' => $_POST['supplierId']];
 
-      $max_size_megabytes = 20;
+      $maxSizeMegabytes = 20;
       $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif");
       $uploadOk = true;
 
@@ -49,8 +49,8 @@
       }
 
       // Check file size
-      if ($_FILES["fileToUpload"]["size"] > $max_size_megabytes * 1048576) { // Converts the size to MB   TODO Test
-        echo "Image is too large. Images must be smaller than " . $max_size_megabytes . "MB<br>";
+      if ($_FILES["fileToUpload"]["size"] > $maxSizeMegabytes * 1048576) { // Converts the size to MB   TODO Test
+        echo "Image is too large. Images must be smaller than " . $maxSizeMegabytes . "MB<br>";
         $uploadOk = false;
       }
       
@@ -121,8 +121,19 @@
 
               <div class="form-outline mb-4">
                 <select required type="select" id="categoryId" name="categoryId" class="form-control form-control-lg" placeholder="Equipment category">
+                  <option value="" disabled selected>Select a category</option>
                   <?php foreach ($categories as $category): ?>
-                    <option value="<?php $category['id'] ?>"><?= $category['name'] ?></option>
+                    <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                  <?php endforeach; ?>
+                </select>
+                <small class="text-danger"><?= htmlspecialchars($categoryId['error'] ?? '') ?></small>
+              </div>
+
+              <div class="form-outline mb-4">
+                <select required type="select" id="supplierId" name="supplierId" class="form-control form-control-lg" placeholder="Equipment supplier">
+                  <option value="" disabled selected>Select a supplier</option>
+                  <?php foreach ($suppliers as $supplier): ?>
+                    <option value="<?= $supplier['id'] ?>"><?= $supplier['name'] ?></option>
                   <?php endforeach; ?>
                 </select>
                 <small class="text-danger"><?= htmlspecialchars($categoryId['error'] ?? '') ?></small>
