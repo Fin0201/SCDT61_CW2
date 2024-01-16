@@ -17,32 +17,39 @@
                 $stock = $_POST['stock'];
                 $categoryId = $_POST['categoryId'];
                 $supplierId = $_POST['supplierId'];
-                
+            
+                // If the image field has a file
                 if ($image['name'] != "") {
+                    // Gets image name, path, and file type info
                     $imageName = guidv4();
                     $imageExt = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
-                    $imageDestination = "./images/inventory/".$imageName.".".$imageExt;
+                    $newImagePath = "./images/inventory/".$imageName.".".$imageExt;
+
+                    // Allowed image extensions
                     $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif",);
-                    $uploadOk = true;
                     
                     // Allow certain file formats
-                    if(!in_array($imageExt, $suitableFormats)) {
-                        $uploadOk = false;
+                    if(in_array($imageExt, $suitableFormats)) {
+                        // Moves the file to the given location
+                        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $newImagePath);
+
+                        // Deletes the original file
+                        $originalImage = $controllers->equipment()->get_equipment_by_id($id)['image'];
+                        unlink($originalImage);
+                    } else {
+                        // Sets the new image path to the existing path
+                        $newImagePath = $controllers->equipment()->get_equipment_by_id($id)['image'];
                     }
-                    // Moves the file to the given location
-                    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $imageDestination);
-                    // Deletes the original file
-                    $originalImage = $controllers->equipment()->get_equipment_by_id($id)['image'];
-                    unlink($originalImage);
                 } else {
-                    $filedestination = $controllers->equipment()->get_equipment_by_id($id)['image'];
+                    // Sets the new image path as the existing path
+                    $newImagePath = $controllers->equipment()->get_equipment_by_id($id)['image'];
                 }
                 
                 $args = array(
                     'id'=>$id,
                     'name'=>$name,
                     'description'=>$description,
-                    'image'=>$imageDestination,
+                    'image'=>$newImagePath,
                     'sell_price'=>$sellprice,
                     'buy_price'=>$buyprice,
                     'stock'=>$stock,

@@ -42,7 +42,7 @@ def main():
     # Checks the user has been logged in
     assert "Inventory Page" in driver.title
 
-    # Clicks on the equipment navbar button to ensure it works
+    # Clicks on the equipment navbar button
     driver.find_element(By.XPATH, "/html/body/nav/div/ul/li[2]/a").click()
 
     # Checks the inventory page has been reloaded
@@ -74,9 +74,9 @@ def main():
     category_option = "2"
     supplier_option = "2"
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/div[7]/select").click() # Opens category dropdown 
-    driver.find_element(By.XPATH, f"/html/body/form/section/div/div/div/div/div/div[7]/select/option[{category_option}]").click() # Picks second option
+    driver.find_element(By.XPATH, f"/html/body/form/section/div/div/div/div/div/div[7]/select/option[{category_option}]").click()
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/div[8]/select").click() # Opens supplier dropdown
-    driver.find_element(By.XPATH, f"/html/body/form/section/div/div/div/div/div/div[8]/select/option[{supplier_option}]").click() # Picks second option
+    driver.find_element(By.XPATH, f"/html/body/form/section/div/div/div/div/div/div[8]/select/option[{supplier_option}]").click()
 
     # Clicks the confirm button
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()

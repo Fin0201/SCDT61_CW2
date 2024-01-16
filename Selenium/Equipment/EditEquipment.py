@@ -64,9 +64,9 @@ def main():
     category_option = "3"
     supplier_option = "3"
     driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/form/div[7]/select").click() # Opens category dropdown 
-    driver.find_element(By.XPATH, f"/html/body/div[2]/div/div/div[2]/form/div[7]/select/option[{category_option}]").click() # Picks third option
+    driver.find_element(By.XPATH, f"/html/body/div[2]/div/div/div[2]/form/div[7]/select/option[{category_option}]").click()
     driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/form/div[8]/select").click() # Opens supplier dropdown
-    driver.find_element(By.XPATH, f"/html/body/div[2]/div/div/div[2]/form/div[8]/select/option[{supplier_option}]").click() # Picks third option
+    driver.find_element(By.XPATH, f"/html/body/div[2]/div/div/div[2]/form/div[8]/select/option[{supplier_option}]").click()
 
     # Clicks the confirm button
     driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/form/div[9]/button[1]").click()
