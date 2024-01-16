@@ -31,11 +31,16 @@ def main():
     assert "Register Page" in driver.title
 
     # Enters text into the registration form
-    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "Test") # First name field
-    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "Member") # last name field
-    enter_text("/html/body/form/section/div/div/div/div/div/div[3]/input", "testmember@test.com") # Email field
-    enter_text("/html/body/form/section/div/div/div/div/div/div[4]/input", "P@ssword1") # Password field
-    enter_text("/html/body/form/section/div/div/div/div/div/div[5]/input", "P@ssword1") # Confirm password field
+    reg_fname = "Test"
+    reg_lname = "Member"
+    reg_email = "testmember@test.com"
+    reg_password = "P@ssword1"
+    reg_rerpeat_password = "P@ssword1"
+    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", reg_fname) # First name field
+    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", reg_lname) # last name field
+    enter_text("/html/body/form/section/div/div/div/div/div/div[3]/input", reg_email) # Email field
+    enter_text("/html/body/form/section/div/div/div/div/div/div[4]/input", reg_password) # Password field
+    enter_text("/html/body/form/section/div/div/div/div/div/div[5]/input", reg_rerpeat_password) # Confirm password field
 
     # Clicks the register button
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()

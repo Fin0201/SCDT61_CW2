@@ -31,8 +31,10 @@ def main():
     assert "Login Page" in driver.title
 
     # Enters text into the login form
-    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "admin@test.com") # Email field
-    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "P@ssword1") # Password field
+    login_email = "admin@test.com"
+    login_password = "P@ssword1"
+    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", login_email) # Email field
+    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", login_password) # Password field
 
     # Clicks the login button
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()
@@ -50,9 +52,12 @@ def main():
     driver.find_element(By.XPATH, "/html/body/div[1]/table/tbody[2]/tr[last()]/td[6]/form[1]/button").click()
 
     # Text input
-    enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", "New name") # Supplier name
-    enter_text("/html/body/div[2]/div/div/div[2]/form/div[2]/input", "newemail@test.co.uk") # Supplier email
-    enter_text("/html/body/div[2]/div/div/div[2]/form/div[3]/input", "1324576809") # Supplier phone number
+    supplier_name = "New supplier name"
+    supplier_email = "newemail@test.co.uk"
+    supplier_phone_number = "1324576809"
+    enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", supplier_name) # Supplier name
+    enter_text("/html/body/div[2]/div/div/div[2]/form/div[2]/input", supplier_email) # Supplier email
+    enter_text("/html/body/div[2]/div/div/div[2]/form/div[3]/input", supplier_phone_number) # Supplier phone number
 
     # Clicks the confirm button
     driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/form/div[4]/button[1]").click()

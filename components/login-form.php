@@ -31,10 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         // Set user session data on successful login
         $roleId = $controllers->userRoles()->get_role_by_user_id($member['ID'])['role_id'];
 
+        // Checks if the user has at least one role
         if ($roleId) {
+          // Adds the role to their session
           $role = $controllers->roles()->get_role_by_id($roleId);
           $_SESSION['user'] = array($member,'role'=>$role['name']);
         } else {
+          // Sets their role status to Member
           $_SESSION['user'] = array($member,'role'=>'Member');
         }
         

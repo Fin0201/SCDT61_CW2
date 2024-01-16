@@ -31,8 +31,10 @@ def main():
     assert "Login Page" in driver.title
 
     # Enters text into the login form
-    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "member@test.com") # Email field
-    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "P@ssword1") # Password field
+    login_email = "member@test.com"
+    login_password = "P@ssword1"
+    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", login_email) # Email field
+    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", login_password) # Password field
 
     # Clicks the login button
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()

@@ -31,8 +31,10 @@ def main():
     assert "Login Page" in driver.title
 
     # Enters text into the login form
-    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "admin@test.com") # Email field
-    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "P@ssword1") # Password field
+    login_email = "admin@test.com"
+    login_password = "P@ssword1"
+    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", login_email) # Email field
+    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", login_password) # Password field
 
     # Clicks the login button
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()
@@ -53,19 +55,28 @@ def main():
     assert "Add Inventory" in driver.title
 
     # Text and image inputs
-    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "C:/laragon/www/SCDT61_CW2/Selenium/Equipment/images/Banana.png") # Item image
-
-    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "Test item") # Item name
-    enter_text("/html/body/form/section/div/div/div/div/div/div[3]/input", "Test description") # Item description
-    enter_text("/html/body/form/section/div/div/div/div/div/div[4]/input", "5.60") # Item sell price
-    enter_text("/html/body/form/section/div/div/div/div/div/div[5]/input", "4.99") # Item buy price
-    enter_text("/html/body/form/section/div/div/div/div/div/div[6]/input", "100") # Item stock
+    equip_image_path = "C:/laragon/www/SCDT61_CW2/Selenium/Equipment/images/Banana.png"
+    equip_name = "Test item"
+    equip_desc = "Test description"
+    equip_sell_price = "5.60"
+    equip_buy_price = "4.99"
+    equip_stock = "100"
+    category_option = "2"
+    supplier_option = "2"
+    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", equip_image_path) # Item image
+    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", equip_name) # Item name
+    enter_text("/html/body/form/section/div/div/div/div/div/div[3]/input", equip_desc) # Item description
+    enter_text("/html/body/form/section/div/div/div/div/div/div[4]/input", equip_sell_price) # Item sell price
+    enter_text("/html/body/form/section/div/div/div/div/div/div[5]/input", equip_buy_price) # Item buy price
+    enter_text("/html/body/form/section/div/div/div/div/div/div[6]/input", equip_stock) # Item stock
 
     # Dropdowns
+    category_option = "2"
+    supplier_option = "2"
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/div[7]/select").click() # Opens category dropdown 
-    driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/div[7]/select/option[2]").click() # Picks second option
+    driver.find_element(By.XPATH, f"/html/body/form/section/div/div/div/div/div/div[7]/select/option[{category_option}]").click() # Picks second option
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/div[8]/select").click() # Opens supplier dropdown
-    driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/div[8]/select/option[2]").click() # Picks second option
+    driver.find_element(By.XPATH, f"/html/body/form/section/div/div/div/div/div/div[8]/select/option[{supplier_option}]").click() # Picks second option
 
     # Clicks the confirm button
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()

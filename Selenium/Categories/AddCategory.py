@@ -31,8 +31,10 @@ def main():
     assert "Login Page" in driver.title
 
     # Enters text into the login form
-    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "admin@test.com") # Email field
-    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "P@ssword1") # Password field
+    login_email = "admin@test.com"
+    login_password = "P@ssword1"
+    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", login_email) # Email field
+    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", login_password) # Password field
 
     # Clicks the login button
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()
@@ -53,7 +55,8 @@ def main():
     assert "Add Category" in driver.title
 
     # Text input
-    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "Test category") # Category name
+    category_name = "Test category"
+    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", category_name) # Category name
 
     # Clicks the confirm button
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()

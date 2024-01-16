@@ -31,8 +31,10 @@ def main():
     assert "Login Page" in driver.title
 
     # Enters text into the login form
-    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "admin@test.com") # Email field
-    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "P@ssword1") # Password field
+    login_email = "admin@test.com"
+    login_password = "P@ssword1"
+    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", login_email) # Email field
+    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", login_password) # Password field
 
     # Clicks the login button
     driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()
@@ -50,9 +52,12 @@ def main():
     driver.find_element(By.XPATH, "/html/body/div[1]/table/tbody[2]/tr[last()]/td[7]/form[1]/button").click()
 
     # Enters text into the edit form
-    enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", "New fname") # Edits first name field
-    enter_text("/html/body/div[2]/div/div/div[2]/form/div[2]/input", "New lname") # Edits last name field
-    enter_text("/html/body/div[2]/div/div/div[2]/form/div[3]/input", "newemail@test.com") # Edits email field
+    edit_fname = "New fname"
+    edit_lname = "New lname"
+    edit_email = "newemail@test.com"
+    enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", edit_fname) # Edits first name field
+    enter_text("/html/body/div[2]/div/div/div[2]/form/div[2]/input", edit_lname) # Edits last name field
+    enter_text("/html/body/div[2]/div/div/div[2]/form/div[3]/input", edit_email) # Edits email field
     driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/form/div[4]/input").click() # Toggles admin role checkbox
 
 
