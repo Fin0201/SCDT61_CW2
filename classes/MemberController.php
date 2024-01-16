@@ -71,16 +71,18 @@ class MemberController {
     {
         try {
             // SQL query to insert a new member record
-            $sql = "INSERT INTO users(firstname, lastname, email, password) 
+            $memberSql = "INSERT INTO users(firstname, lastname, email, password) 
                     VALUES (:firstname, :lastname, :email, :password)"; 
 
             // Execute the query with the provided member data
-            $this->db->runSQL($sql, $member);
+            $this->db->runSQL($memberSql, $member);
 
-            $sql2 = "INSERT INTO user_roles(user_id, role_id)
+            // SQL query to give the user the member role
+            $userRoleSql = "INSERT INTO user_roles(user_id, role_id)
                      VALUES (LAST_INSERT_ID(), (SELECT id FROM roles WHERE name = 'Member'))";
             
-            $this->db->runSQL($sql2);
+            // Executes the query
+            $this->db->runSQL($userRoleSql);
             return true;
 
         } catch (PDOException $e) {
