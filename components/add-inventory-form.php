@@ -37,7 +37,7 @@
               'categoryId' => $_POST['categoryId'],
               'supplierId' => $_POST['supplierId']];
 
-      $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif", "avif");
+      $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif",);
       $uploadOk = true;
       
       // Allow certain file formats

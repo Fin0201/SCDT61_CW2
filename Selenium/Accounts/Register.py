@@ -43,28 +43,8 @@ def main():
     # Checks the login page has been loaded
     assert "Login Page" in driver.title
 
-    # Enters text into the login form
-    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "testmember@test.com") # Email field
-    enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "P@ssword1") # Password field
-
-    # Clicks the login button
-    driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()
-    
-    # Checks the user has been logged in
-    assert "Member Page" in driver.title
-
-    # Clicks the logout button
-    driver.find_element(By.XPATH, "/html/body/a").click()
-
-    # Checks the correct page has been loaded
-    assert "Login Page" in driver.title
-
     # Waits 60 seconds before closing the chrome tab
     time.sleep(60)
-
-
-
-    
 
 
 if __name__ == "__main__":

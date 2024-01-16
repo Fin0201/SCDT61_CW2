@@ -44,7 +44,7 @@ def main():
     driver.find_element(By.XPATH, "/html/body/div[1]/table/tbody[2]/tr[last()]/td[9]/form[1]/button").click()
 
     # Text and image inputs
-    enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", "C:/laragon/www/SCDT61_CW2/Selenium/Equipment/images/Apple.avif") # Item image
+    enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", "C:/laragon/www/SCDT61_CW2/Selenium/Equipment/images/Apple.webp") # Item image
 
     enter_text("/html/body/div[2]/div/div/div[2]/form/div[2]/input", "New name") # Item name
     enter_text("/html/body/div[2]/div/div/div[2]/form/div[3]/input", "New description") # Item description

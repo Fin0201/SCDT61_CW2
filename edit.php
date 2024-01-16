@@ -22,7 +22,7 @@
                     $imageName = guidv4();
                     $imageExt = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
                     $imageDestination = "./images/inventory/".$imageName.".".$imageExt;
-                    $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif", "avif");
+                    $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif",);
                     $uploadOk = true;
                     
                     // Allow certain file formats
