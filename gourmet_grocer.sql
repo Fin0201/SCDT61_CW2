@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 16, 2024 at 04:14 PM
+-- Generation Time: Jan 16, 2024 at 11:50 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -67,7 +67,7 @@ CREATE TABLE `equipments` (
 --
 
 INSERT INTO `equipments` (`id`, `name`, `description`, `image`, `sell_price`, `buy_price`, `stock`, `categoryId`, `supplierId`, `createdOn`, `modifiedOn`) VALUES
-(33, 'New name', 'New description', './images/inventory/ec9d3f38-b42a-4b72-82cb-4953342d4257.avif', 2.50, 1.00, 200, 3, 4, '2024-01-16 14:29:13', '2024-01-16 14:29:20');
+(33, 'New name', 'New description', './images/inventory/2548d83e-bce7-4d62-8c5e-38d7793af332.webp', 2.50, 1.00, 200, 3, 4, '2024-01-16 14:29:13', '2024-01-16 17:16:06');
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE `suppliers` (
 
 INSERT INTO `suppliers` (`id`, `name`, `email`, `phoneNumber`, `createdOn`, `modifiedOn`) VALUES
 (3, 'test2', 'test2@test.com', 1234567890, '2024-01-14 21:30:53', '2024-01-14 21:40:27'),
-(4, 'gfgfg', 'erf@dsds.ds', 12334556781, '2024-01-14 22:29:21', '2024-01-14 22:29:21');
+(4, 'Test Supplier 3', 'test@dsds.ds', 12334556781, '2024-01-14 22:29:21', '2024-01-16 16:45:02');
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `firstname`, `lastname`, `password`, `email`, `createdOn`, `modifiedOn`) VALUES
-(45, 'Admin', 'Test', '$2y$10$PYChhrIjbQHGsazUSwU1bOiYe2rGjjy8Uko.3mctu3KlsIv8HHdna', 'admin@test.com', '2024-01-12 19:59:36', '2024-01-12 19:59:36');
+(45, 'Admin', 'Test', '$2y$10$PYChhrIjbQHGsazUSwU1bOiYe2rGjjy8Uko.3mctu3KlsIv8HHdna', 'admin@test.com', '2024-01-12 19:59:36', '2024-01-12 19:59:36'),
+(72, 'Member', 'Test', '$2y$10$RO51PanLGAkAEKjIpBLGwOjPqE3oj2I67XTMdI06BOTb4F76Y6DiG', 'member@test.com', '2024-01-16 20:08:09', '2024-01-16 20:08:09');
 
 -- --------------------------------------------------------
 
@@ -152,7 +153,8 @@ CREATE TABLE `user_roles` (
 --
 
 INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
-(45, 1);
+(45, 1),
+(72, 2);
 
 --
 -- Indexes for dumped tables
@@ -205,31 +207,31 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `equipments`
 --
 ALTER TABLE `equipments`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- Constraints for dumped tables
