@@ -1,18 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 import time
 
 # Sets the Selenium webdriver to Chrome
 driver = webdriver.Chrome()
-
-# Function used to click on HTML elements
-def click_element(input_xpath):
-    # Find Element by XPATH
-    element = driver.find_element(By.XPATH, input_xpath)
-
-    # Click Element
-    element.click()
 
 # Function used to enter text into an input field
 def enter_text(input_xpath, new_text):
@@ -34,7 +25,7 @@ def main():
     assert "Home" in driver.title
 
     # Clicks on the register navbar button
-    click_element("/html/body/nav/div/ul/li[7]/a")
+    driver.find_element(By.XPATH, "/html/body/nav/div/ul/li[7]/a").click()
 
     # Checks the register page has been loaded
     assert "Register Page" in driver.title
@@ -47,7 +38,7 @@ def main():
     enter_text("/html/body/form/section/div/div/div/div/div/div[5]/input", "P@ssword1") # Confirm password field
 
     # Clicks the register button
-    click_element("/html/body/form/section/div/div/div/div/div/button")
+    driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()
 
     # Checks the login page has been loaded
     assert "Login Page" in driver.title
@@ -57,13 +48,13 @@ def main():
     enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "P@ssword1") # Password field
 
     # Clicks the login button
-    click_element("/html/body/form/section/div/div/div/div/div/button")
+    driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()
     
     # Checks the user has been logged in
     assert "Member Page" in driver.title
 
     # Clicks the logout button
-    click_element("/html/body/a")
+    driver.find_element(By.XPATH, "/html/body/a").click()
 
     # Checks the correct page has been loaded
     assert "Login Page" in driver.title

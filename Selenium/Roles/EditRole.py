@@ -1,19 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 import time
 
 # Sets the Selenium webdriver to Chrome
 driver = webdriver.Chrome()
-
-# Function used to click on HTML elements
-def click_element(input_xpath):
-    # Find Element by XPATH
-    element = driver.find_element(By.XPATH, input_xpath)
-
-    # Click Element
-    element.click()
-
 
 # Function used to enter text into an input field
 def enter_text(input_xpath, new_text):
@@ -35,7 +25,7 @@ def main():
     assert "Home" in driver.title
 
     # Clicks on the login navbar button
-    click_element("/html/body/nav/div/ul/li[8]/a")
+    driver.find_element(By.XPATH, "/html/body/nav/div/ul/li[8]/a").click()
 
     # Checks the register page has been loaded
     assert "Login Page" in driver.title
@@ -45,25 +35,25 @@ def main():
     enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "P@ssword1") # Password field
 
     # Clicks the login button
-    click_element("/html/body/form/section/div/div/div/div/div/button")
+    driver.find_element(By.XPATH, "/html/body/form/section/div/div/div/div/div/button").click()
     
     # Checks the user has been logged in
     assert "Inventory Page" in driver.title
 
     # Loads the roles page
-    click_element("/html/body/nav/div/ul/li[4]/a")
+    driver.find_element(By.XPATH, "/html/body/nav/div/ul/li[4]/a").click()
 
     # Checks the roles page has been loaded
     assert "Roles Page" in driver.title
 
     # Clicks on the edit button for the last item in the table
-    click_element("/html/body/div[1]/table/tbody[2]/tr[last()]/td[4]/form[1]/button")
+    driver.find_element(By.XPATH, "/html/body/div[1]/table/tbody[2]/tr[last()]/td[4]/form[1]/button").click()
 
     # Text inputs
     enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", "New name") # Role name
 
     # Clicks the confirm button
-    click_element("/html/body/div[2]/div/div/div[2]/form/div[2]/button[1]")
+    driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/form/div[2]/button[1]").click()
 
     # Checks the page has been reloaded
     assert "Roles Page" in driver.title
