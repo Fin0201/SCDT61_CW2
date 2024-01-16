@@ -48,8 +48,9 @@ def main():
     # Checks the page has been loaded
     assert "Suppliers Page" in driver.title
 
-    # Clicks on the edit button for the last item in the table
-    driver.find_element(By.XPATH, "/html/body/div[1]/table/tbody[2]/tr[last()]/td[6]/form[1]/button").click()
+    # Clicks on the edit button for the selected item in the table
+    table_row = "last()" # Selects the last row in the table
+    driver.find_element(By.XPATH, f"/html/body/div[1]/table/tbody[2]/tr[{table_row}]/td[6]/form[1]/button").click()
 
     # Text input
     supplier_name = "New supplier name"

@@ -42,8 +42,9 @@ def main():
     # Checks the user has been logged in
     assert "Inventory Page" in driver.title
 
-    # Clicks on the edit button for the last item
-    driver.find_element(By.XPATH, "/html/body/div[1]/table/tbody[2]/tr[last()]/td[9]/form[1]/button").click()
+    # Clicks on the edit button for the selected item
+    table_row = "last()" # Selects the last row in the table
+    driver.find_element(By.XPATH, f"/html/body/div[1]/table/tbody[2]/tr[{table_row}]/td[9]/form[1]/button").click()
 
     # Text and image inputs
     equip_image_path = "C:/laragon/www/SCDT61_CW2/Selenium/Equipment/images/Apple.webp"

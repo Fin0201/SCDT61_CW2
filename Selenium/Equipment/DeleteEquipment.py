@@ -42,8 +42,9 @@ def main():
     # Checks the user has been logged in
     assert "Inventory Page" in driver.title
 
-    # Clicks on the delete button for the last item
-    driver.find_element(By.XPATH, "/html/body/div[1]/table/tbody[2]/tr[last()]/td[9]/form[2]/button").click()
+    # Clicks on the delete button for the selected item
+    table_row = "last()" # Selects the last row in the table
+    driver.find_element(By.XPATH, f"/html/body/div[1]/table/tbody[2]/tr[{table_row}]/td[9]/form[2]/button").click()
 
     # Checks the inventory page has been reloaded
     assert "Inventory Page" in driver.title

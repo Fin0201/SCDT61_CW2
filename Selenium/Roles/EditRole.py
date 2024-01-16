@@ -48,8 +48,9 @@ def main():
     # Checks the roles page has been loaded
     assert "Roles Page" in driver.title
 
-    # Clicks on the edit button for the last item in the table
-    driver.find_element(By.XPATH, "/html/body/div[1]/table/tbody[2]/tr[last()]/td[4]/form[1]/button").click()
+    # Clicks on the edit button for the selected item in the table
+    table_row = "last()" # Selects the last row in the table
+    driver.find_element(By.XPATH, f"/html/body/div[1]/table/tbody[2]/tr[{table_row}]/td[4]/form[1]/button").click()
 
     # Text inputs
     role_name = "New name"

@@ -48,8 +48,9 @@ def main():
     # Checks the correct page has been loaded
     assert "Users Page" in driver.title
 
-    # Clicks on the edit button for the last user account in the table
-    driver.find_element(By.XPATH, "/html/body/div[1]/table/tbody[2]/tr[last()]/td[7]/form[1]/button").click()
+    # Clicks on the edit button for the user account
+    table_row = "last()" # Selects the last row in the table
+    driver.find_element(By.XPATH, f"/html/body/div[1]/table/tbody[2]/tr[{table_row}]/td[7]/form[1]/button").click()
 
     # Enters text into the edit form
     edit_fname = "New fname"

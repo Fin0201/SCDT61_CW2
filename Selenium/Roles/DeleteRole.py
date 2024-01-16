@@ -48,8 +48,9 @@ def main():
     # Checks the roles page has been loaded
     assert "Roles Page" in driver.title
 
-    # Clicks on the delete button for the last item in the table
-    driver.find_element(By.XPATH, "/html/body/div[1]/table/tbody[2]/tr[last()]/td[4]/form[2]/button").click()
+    # Clicks on the delete button for the selected item in the table
+    table_row = "last()" # Selects the last row in the table
+    driver.find_element(By.XPATH, f"/html/body/div[1]/table/tbody[2]/tr[{table_row}]/td[4]/form[2]/button").click()
 
     # Checks the roles page has been reloaded
     assert "Roles Page" in driver.title
