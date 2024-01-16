@@ -56,8 +56,8 @@ def main():
     # Checks the roles page has been loaded
     assert "Roles Page" in driver.title
 
-    # Clicks on the edit button for the third item in the table
-    click_element("/html/body/div[1]/table/tbody[2]/tr[3]/td[4]/form[1]/button")
+    # Clicks on the edit button for the last item in the table
+    click_element("/html/body/div[1]/table/tbody[2]/tr[last()]/td[4]/form[1]/button")
 
     # Text inputs
     enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", "New name") # Role name

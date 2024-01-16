@@ -62,7 +62,7 @@ def main():
     assert "Add Inventory" in driver.title
 
     # Text and image inputs
-    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "C:/laragon/www/SCDT61_CW2/Selenium/images/Banana.png") # Item image
+    enter_text("/html/body/form/section/div/div/div/div/div/div[1]/input", "C:/laragon/www/SCDT61_CW2/Selenium/Equipment/images/Banana.png") # Item image
 
     enter_text("/html/body/form/section/div/div/div/div/div/div[2]/input", "Test item") # Item name
     enter_text("/html/body/form/section/div/div/div/div/div/div[3]/input", "Test description") # Item description

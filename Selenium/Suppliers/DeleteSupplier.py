@@ -55,8 +55,8 @@ def main():
     # Checks the page has been loaded
     assert "Suppliers Page" in driver.title
 
-    # Clicks on the delete button for the third item in the table
-    click_element("/html/body/div[1]/table/tbody[2]/tr[3]/td[6]/form[2]/button")
+    # Clicks on the delete button for the last item in the table
+    click_element("/html/body/div[1]/table/tbody[2]/tr[last()]/td[6]/form[2]/button")
 
     # Checks the suppliers page has been reloaded
     assert "Suppliers Page" in driver.title

@@ -50,11 +50,11 @@ def main():
     # Checks the user has been logged in
     assert "Inventory Page" in driver.title
 
-    # Clicks on the edit button for the item
-    click_element("/html/body/div[1]/table/tbody[2]/tr[1]/td[9]/form[1]/button")
+    # Clicks on the edit button for the last item
+    click_element("/html/body/div[1]/table/tbody[2]/tr[last()]/td[9]/form[1]/button")
 
     # Text and image inputs
-    enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", "C:/laragon/www/SCDT61_CW2/Selenium/images/Apple.avif") # Item image
+    enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", "C:/laragon/www/SCDT61_CW2/Selenium/Equipment/images/Apple.avif") # Item image
 
     enter_text("/html/body/div[2]/div/div/div[2]/form/div[2]/input", "New name") # Item name
     enter_text("/html/body/div[2]/div/div/div[2]/form/div[3]/input", "New description") # Item description

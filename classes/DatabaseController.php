@@ -31,5 +31,4 @@ class DatabaseController extends PDO {
         $statement->execute($args);
         return $statement; // Return the statement object
     }
-
 }

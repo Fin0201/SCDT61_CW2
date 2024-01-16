@@ -56,8 +56,8 @@ def main():
     # Checks the page has been loaded
     assert "Suppliers Page" in driver.title
 
-    # Clicks on the edit button for the third item in the table
-    click_element("/html/body/div[1]/table/tbody[2]/tr[3]/td[6]/form[1]/button")
+    # Clicks on the edit button for the last item in the table
+    click_element("/html/body/div[1]/table/tbody[2]/tr[last()]/td[6]/form[1]/button")
 
     # Text input
     enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", "New name") # Supplier name

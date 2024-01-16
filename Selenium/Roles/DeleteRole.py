@@ -55,8 +55,8 @@ def main():
     # Checks the roles page has been loaded
     assert "Roles Page" in driver.title
 
-    # Clicks on the delete button for the third item in the table
-    click_element("/html/body/div[1]/table/tbody[2]/tr[3]/td[4]/form[2]/button")
+    # Clicks on the delete button for the last item in the table
+    click_element("/html/body/div[1]/table/tbody[2]/tr[last()]/td[4]/form[2]/button")
 
     # Checks the roles page has been reloaded
     assert "Roles Page" in driver.title

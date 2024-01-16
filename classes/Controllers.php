@@ -17,7 +17,7 @@ class Controllers {
         // Database connection settings
         $type ='mysql';
         $server = '127.0.0.1'; // Localhost server
-        $db = 'shop2'; // Database name
+        $db = 'gourmet_grocer'; // Database name
         $port = '3306'; // Port for MySQL
         $charset = 'latin1'; // Character set
 

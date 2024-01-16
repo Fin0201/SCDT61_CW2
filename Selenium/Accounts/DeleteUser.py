@@ -55,8 +55,8 @@ def main():
     # Checks the correct page has been loaded
     assert "Users Page" in driver.title
 
-    # Clicks on the delete button for the second user account in the table
-    click_element("/html/body/div[1]/table/tbody[2]/tr[2]/td[7]/form[2]/button")
+    # Clicks on the delete button for the last user account in the table
+    click_element("/html/body/div[1]/table/tbody[2]/tr[last()]/td[7]/form[2]/button")
 
     # Checks the page has been reloaded
     assert "Users Page" in driver.title

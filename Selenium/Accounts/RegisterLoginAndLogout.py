@@ -11,7 +11,6 @@ def click_element(input_xpath):
     # Find Element by XPATH
     element = driver.find_element(By.XPATH, input_xpath)
 
-
     # Click Element
     element.click()
 

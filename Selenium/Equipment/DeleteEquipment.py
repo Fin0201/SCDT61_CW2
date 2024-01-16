@@ -49,8 +49,8 @@ def main():
     # Checks the user has been logged in
     assert "Inventory Page" in driver.title
 
-    # Clicks on the delete button for the item
-    click_element("/html/body/div[1]/table/tbody[2]/tr[1]/td[9]/form[2]/button")
+    # Clicks on the delete button for the last item
+    click_element("/html/body/div[1]/table/tbody[2]/tr[last()]/td[9]/form[2]/button")
 
     # Checks the inventory page has been reloaded
     assert "Inventory Page" in driver.title

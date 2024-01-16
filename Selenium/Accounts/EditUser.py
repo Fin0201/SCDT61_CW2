@@ -56,8 +56,8 @@ def main():
     # Checks the correct page has been loaded
     assert "Users Page" in driver.title
 
-    # Clicks on the edit button for the second user account in the table
-    click_element("/html/body/div[1]/table/tbody[2]/tr[2]/td[7]/form[1]/button")
+    # Clicks on the edit button for the last user account in the table
+    click_element("/html/body/div[1]/table/tbody[2]/tr[last()]/td[7]/form[1]/button")
 
     # Enters text into the edit form
     enter_text("/html/body/div[2]/div/div/div[2]/form/div[1]/input", "New fname") # Edits first name field
@@ -65,8 +65,9 @@ def main():
     enter_text("/html/body/div[2]/div/div/div[2]/form/div[3]/input", "newemail@test.com") # Edits email field
     click_element("/html/body/div[2]/div/div/div[2]/form/div[4]/input") # Toggles admin role checkbox
 
+
     # Clicks the confirm button
-    click_element("/html/body/div[2]/div/div/div[2]/form/div[7]/button[1]")
+    click_element(f"/html/body/div[2]/div/div/div[2]/form/div[last()]/button[1]")
 
     # Checks the page has been reloaded
     assert "Users Page" in driver.title

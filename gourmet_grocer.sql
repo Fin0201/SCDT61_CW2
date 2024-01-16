@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 16, 2024 at 03:46 PM
+-- Generation Time: Jan 16, 2024 at 04:14 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `shop2`
+-- Database: `gourmet_grocer`
 --
 
 -- --------------------------------------------------------
@@ -134,8 +134,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `firstname`, `lastname`, `password`, `email`, `createdOn`, `modifiedOn`) VALUES
-(45, 'Admin', 'Test', '$2y$10$PYChhrIjbQHGsazUSwU1bOiYe2rGjjy8Uko.3mctu3KlsIv8HHdna', 'admin@test.com', '2024-01-12 19:59:36', '2024-01-12 19:59:36'),
-(64, 'New fname', 'New lname', '$2y$10$WK9XhQ27mId31AAzfNjrCeH4wqdhjHwt1g/u5GfceTjYREr/mUNeq', 'newemail@test.com', '2024-01-16 00:17:55', '2024-01-16 00:37:22');
+(45, 'Admin', 'Test', '$2y$10$PYChhrIjbQHGsazUSwU1bOiYe2rGjjy8Uko.3mctu3KlsIv8HHdna', 'admin@test.com', '2024-01-12 19:59:36', '2024-01-12 19:59:36');
 
 -- --------------------------------------------------------
 
@@ -153,8 +152,7 @@ CREATE TABLE `user_roles` (
 --
 
 INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
-(45, 1),
-(64, 1);
+(45, 1);
 
 --
 -- Indexes for dumped tables
@@ -231,7 +229,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- Constraints for dumped tables
