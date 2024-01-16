@@ -100,7 +100,7 @@ class MemberController {
 
         // If member exists, verify the password
         if ($member) {
-            $auth = password_verify($password,  $member['password']);
+            $auth = password_verify($password, $member['password']);
             // Return member data if authentication is successful, otherwise return false
             return $auth ? $member : false;
         }

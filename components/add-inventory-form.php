@@ -37,21 +37,8 @@
               'categoryId' => $_POST['categoryId'],
               'supplierId' => $_POST['supplierId']];
 
-      $maxSizeMegabytes = 20;
-      $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif");
+      $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif", "avif");
       $uploadOk = true;
-
-      // Check if image file is a actual image
-      if(!getimagesize($_FILES["fileToUpload"]["tmp_name"])) {
-        echo "File is not an image.<br>";
-        $uploadOk = false;
-      }
-
-      // Check file size
-      if ($_FILES["fileToUpload"]["size"] > $maxSizeMegabytes * 1048576) { // Converts the size to MB
-        echo "Image is too large. Images must be smaller than " . $maxSizeMegabytes . "MB<br>";
-        $uploadOk = false;
-      }
       
       // Allow certain file formats
       if(!in_array($imageExt, $suitableFormats)) {
@@ -104,12 +91,12 @@
               </div>
 
               <div class="form-outline mb-4">
-                <input required type="number" min="1" step="any" id="sell_price" name="sell_price" class="form-control form-control-lg" placeholder="Equipment sell price" value="<?= htmlspecialchars($sell_price['value'] ?? '') ?>"/>
+                <input required type="number" min="0.00" step="0.01" id="sell_price" name="sell_price" class="form-control form-control-lg" placeholder="Equipment sell price" value="<?= htmlspecialchars($sell_price['value'] ?? '') ?>"/>
                 <small class="text-danger"><?= htmlspecialchars($sell_price['error'] ?? '') ?></small>
               </div>
 
               <div class="form-outline mb-4">
-                <input required type="number" min="1" step="any" id="buy_price" name="buy_price" class="form-control form-control-lg" placeholder="Equipment buy price" value="<?= htmlspecialchars($buy_price['value'] ?? '') ?>"/>
+                <input required type="number" min="0.00" step="0.01" id="buy_price" name="buy_price" class="form-control form-control-lg" placeholder="Equipment buy price" value="<?= htmlspecialchars($buy_price['value'] ?? '') ?>"/>
                 <small class="text-danger"><?= htmlspecialchars($buy_price['error'] ?? '') ?></small>
               </div>
 

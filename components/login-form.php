@@ -31,13 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         // Set user session data on successful login
         $roleId = $controllers->userRoles()->get_role_by_user_id($member['ID'])['role_id'];
 
-        
-        $role = $controllers->roles()->get_role_by_id($roleId);
-        $_SESSION['user'] = array($member,'role'=>$role['name']);
-
-        echo $roleId;
-        echo $roleName['name'];
-
+        if ($roleId) {
+          $role = $controllers->roles()->get_role_by_id($roleId);
+          $_SESSION['user'] = array($member,'role'=>$role['name']);
+        } else {
+          $_SESSION['user'] = array($member,'role'=>'Member');
+        }
         
         // Redirect based on user type
         if ($_SESSION['user']['role'] == "Admin") {

@@ -74,7 +74,7 @@
             }
 
             // Validate the phone number
-            if (preg_match('/^[0-9]{11}+$/', $phoneNumber)) {
+            if (preg_match('/^[0-9]{10,11}+$/', $phoneNumber)) {
                 return self::returnInput($phoneNumber, true);
             } else {
                 return self::returnInput("Phone number is invalid.", false);

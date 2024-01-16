@@ -11,7 +11,7 @@
                 $id = $_POST['id'];
                 $name = $_POST['name'];
                 $description = $_POST['description'];
-                $image = $_FILES['image'];
+                $image = $_FILES['fileToUpload'];
                 $sellprice = $_POST['sell_price'];
                 $buyprice = $_POST['buy_price'];
                 $stock = $_POST['stock'];
@@ -21,27 +21,16 @@
                 if ($image['name'] != "") {
                     $imageName = guidv4();
                     $imageExt = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
-                    $image = "./images/inventory/".$imageName.".".$imageExt;
-                    $maxSizeMegabytes = 20;
-                    $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif");
+                    $imageDestination = "./images/inventory/".$imageName.".".$imageExt;
+                    $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif", "avif");
                     $uploadOk = true;
-
-                    // Check if image file is a actual image
-                    if(!getimagesize($_FILES["fileToUpload"]["tmp_name"])) {
-                        $uploadOk = false;
-                    }
-
-                    // Check file size
-                    if ($_FILES["fileToUpload"]["size"] > $maxSizeMegabytes * 1048576) {
-                        $uploadOk = false;
-                    }
                     
                     // Allow certain file formats
                     if(!in_array($imageExt, $suitableFormats)) {
                         $uploadOk = false;
                     }
                     // Moves the file to the given location
-                    move_uploaded_file($imagetempname, $filedestination);
+                    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $imageDestination);
                     // Deletes the original file
                     $originalImage = $controllers->equipment()->get_equipment_by_id($id)['image'];
                     unlink($originalImage);
@@ -49,12 +38,11 @@
                     $filedestination = $controllers->equipment()->get_equipment_by_id($id)['image'];
                 }
                 
-                var_dump($_POST);
                 $args = array(
                     'id'=>$id,
                     'name'=>$name,
                     'description'=>$description,
-                    'image'=>$filedestination,
+                    'image'=>$imageDestination,
                     'sell_price'=>$sellprice,
                     'buy_price'=>$buyprice,
                     'stock'=>$stock,

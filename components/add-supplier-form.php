@@ -8,7 +8,6 @@
     // Check if the form is submitted via POST
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
-      var_dump($_POST);
         // Process the submitted form data
         $name = InputProcessor::processString($_POST['name']);
         $email = InputProcessor::processEmail($_POST['email']);
@@ -31,7 +30,7 @@
             // Add the supplier to the database
             $supplier = $controllers->suppliers()->add_supplier($args);
             if ($supplier) {
-                // redirect("suppliers", ["message" => "supplier successfully added!"]);
+                redirect("suppliers", ["message" => "supplier successfully added!"]);
             } else {
                 echo "Sorry, there was an error adding the supplier.";
             }

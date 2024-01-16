@@ -1,5 +1,5 @@
 <?php
-    $title = 'categories Page';
+    $title = 'Categories Page';
     require __DIR__ . "/inc/header.php";
 
     require 'inc/functions.php';

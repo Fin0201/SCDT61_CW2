@@ -23,6 +23,15 @@ class RoleController {
         return $this->db->runSQL($sql, $args)->fetch();
     }
 
+    public function get_role_by_name(string $name)
+    {
+        // SQL query to select a role by its ID
+        $sql = "SELECT * FROM roles WHERE name = :name";
+        $args = ['name' => $name];
+        // Execute the query and return the fetched role record
+        return $this->db->runSQL($sql, $args)->fetch();
+    }
+
     // Method to retrieve all role records
     public function get_all_roles()
     {
