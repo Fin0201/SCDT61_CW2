@@ -6,6 +6,7 @@
     // Retrieve all categories data using the categories controller
     $categories = $controllers->categories()->get_all_categories();
 
+    // Sets $admin to true if the user role is stored as "Admin" in the session
     $admin = false;
     if ($_SESSION) {
       if ($_SESSION['user']['role'] == "Admin") {
@@ -30,11 +31,13 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($categories as $category): ?> <!-- Loop through each categories item -->
+            <?php foreach ($categories as $category): ?> <!-- Loop through each category item -->
                 <tr>
                     <td><?= htmlspecialchars($category['name']) ?></td> 
                     <td><?= htmlspecialchars($category['createdOn']) ?></td>
                     <td><?= htmlspecialchars($category['modifiedOn']) ?></td>
+
+                    <!-- Checks if the user is an admin -->
                     <?php if ($admin) { ?>
                         <td style="max-width: 50px;">
                             <form action = "./categories.php" method="post">
@@ -54,29 +57,32 @@
     </table>
 </div>
 
-<div class="modal" tabindex="-1" category="dialog" id="edititemmodal">
-  <div class="modal-dialog" category="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit Item</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="./edit.php" method="post">
-          <div class="form-group">
-            <label class="form-label">category Name</label>
-            <input type="text" name="name" class="form-control" value='<?= $currentItem['name']; ?>' required>
-          </div>
-          <div class="modal-footer">
-          <input type="hidden" name="action" value="categories">
-          <input type="hidden" name="id" value="<?= $currentItem['id']?>">
-          <button type="submit" class="btn btn-primary">Confirm</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </form>
-      </div>
+<!-- Modal used to edit item -->
+<?php if ($admin): ?>
+  <div class="modal" tabindex="-1" category="dialog" id="edititemmodal">
+    <div class="modal-dialog" category="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Item</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="./edit.php" method="post">
+            <div class="form-group">
+              <label class="form-label">category Name</label>
+              <input type="text" name="name" class="form-control" value='<?= $currentItem['name']; ?>' required>
+            </div>
+            <div class="modal-footer">
+            <input type="hidden" name="action" value="categories">
+            <input type="hidden" name="id" value="<?= $currentItem['id']?>">
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </form>
+        </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<?php endif; ?>

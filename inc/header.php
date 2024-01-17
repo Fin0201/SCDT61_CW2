@@ -49,6 +49,7 @@
         <a class="nav-link" href="./categories.php">Categories</a>
       </li>
 
+      <!-- Checks if the user is logged in -->
       <?php if (!isset($_SESSION['user'])) { ?>
       <li class="nav-item">
         <a class="nav-link" href="./register.php">Register</a>

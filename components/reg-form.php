@@ -80,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
               <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Register</button>
               <a class="btn btn-secondary btn-lg w-100" type="submit" href="./login.php" >Already got an account?</a>
 
+              <!-- Displays a message if one is set -->
               <?php if ($message): ?>
                 <div class="alert alert-danger mt-4">
                   <?= $message ?? '' ?>

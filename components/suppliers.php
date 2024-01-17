@@ -6,6 +6,7 @@
     // Retrieve all suppliers data using the suppliers controller
     $suppliers = $controllers->suppliers()->get_all_suppliers();
 
+    // Sets $admin to true if the user role is stored as "Admin" in the session
     $admin = false;
     if ($_SESSION) {
       if ($_SESSION['user']['role'] == "Admin") {
@@ -39,6 +40,7 @@
                     <td><?= htmlspecialchars($supplier['phoneNumber']) ?></td>
                     <td><?= htmlspecialchars($supplier['createdOn']) ?></td>
                     <td><?= htmlspecialchars($supplier['modifiedOn']) ?></td>
+                    <!-- Checks if the user is an admin -->
                     <?php if ($admin) { ?>
                         <td style="max-width: 50px;">
                             <form action = "./suppliers.php" method="post">
@@ -58,37 +60,40 @@
     </table>
 </div>
 
-<div class="modal" tabindex="-1" supplier="dialog" id="edititemmodal">
-  <div class="modal-dialog" supplier="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit Item</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="./edit.php" method="post">
-          <div class="form-group">
-            <label class="form-label">Supplier Name</label>
-            <input type="text" name="name" class="form-control" value='<?= $currentItem['name']; ?>' required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Supplier Email</label>
-            <input type="email" name="email" class="form-control" value='<?= $currentItem['email']; ?>' required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Supplier Phone Number</label>
-            <input type="tel" name="phoneNumber" class="form-control" value='<?= $currentItem['phoneNumber']; ?>' required>
-          </div>
-          <div class="modal-footer">
-          <input type="hidden" name="action" value="suppliers">
-          <input type="hidden" name="id" value="<?= $currentItem['id']?>">
-          <button type="submit" class="btn btn-primary">Confirm</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </form>
-      </div>
+<?php if ($admin): ?>
+  <!-- Modal used to edit item -->
+  <div class="modal" tabindex="-1" supplier="dialog" id="edititemmodal">
+    <div class="modal-dialog" supplier="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Item</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="./edit.php" method="post">
+            <div class="form-group">
+              <label class="form-label">Supplier Name</label>
+              <input type="text" name="name" class="form-control" value='<?= $currentItem['name']; ?>' required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Supplier Email</label>
+              <input type="email" name="email" class="form-control" value='<?= $currentItem['email']; ?>' required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Supplier Phone Number</label>
+              <input type="tel" name="phoneNumber" class="form-control" value='<?= $currentItem['phoneNumber']; ?>' required>
+            </div>
+            <div class="modal-footer">
+            <input type="hidden" name="action" value="suppliers">
+            <input type="hidden" name="id" value="<?= $currentItem['id']?>">
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </form>
+        </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<?php endif; ?>

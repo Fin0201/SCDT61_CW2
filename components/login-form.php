@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           redirect('member'); // Redirect non-admin users
         }
       }
-
     }
     else {
        // Set error message for invalid input
@@ -94,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                   <?= $message ?? '' ?>
                 </div>
               <?php endif ?>
-
             </div>
           </div>
         </div>
