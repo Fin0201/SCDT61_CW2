@@ -128,6 +128,7 @@
             <div class="form-outline mb-4">
               <select required type="select" id="categoryId" name="categoryId" class="form-control form-control-lg" placeholder="Equipment category">
                 <option value="" disabled>Select a category</option>
+                <!-- Loops through each category and adds it as an option -->
                 <?php foreach ($categories as $category):
                   $selected = ($currentItem['categoryId'] == $category['id']) ? 'selected' : ''; ?>
                   <option selected="<?= $selected ?>" value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
@@ -139,6 +140,7 @@
             <div class="form-outline mb-4">
               <select required type="select" id="supplierId" name="supplierId" class="form-control form-control-lg" placeholder="Equipment supplier">
                 <option value="" disabled selected>Select a supplier</option>
+                <!-- Loops through each supplier and adds it as an option -->
                 <?php foreach ($suppliers as $supplier):
                   $selected = ($currentItem['supplierId'] == $supplier['id']) ? 'selected' : ''; ?>
                   <option <?= $selected ?> value="<?= $supplier['id'] ?>"><?= $supplier['name'] ?></option>

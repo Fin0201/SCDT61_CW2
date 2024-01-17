@@ -37,23 +37,20 @@
               'categoryId' => $_POST['categoryId'],
               'supplierId' => $_POST['supplierId']];
 
-      $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif",);
-      $uploadOk = true;
-      
-      // Allow certain file formats
-      if(!in_array($imageExt, $suitableFormats)) {
-        echo "Sorry, Invalid file format.<br>";
-        $uploadOk = false;
-      }
 
-      // Check if $uploadOk is set to 0 by an error
-      if (!$uploadOk) {
-        echo "Sorry, your file was not uploaded.";
+      // Allowed image formats
+      $suitableFormats = array("jpg", "jpeg", "png", "gif", "webp", "jfif",);
+
+      // Check if the image is a suitable format
+      if (!in_array($imageExt, $suitableFormats)) {
+        echo "Sorry, Invalid file format.";
       // if everything is ok, try to upload file
       } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $image)) {
-          echo "The file ". htmlspecialchars(basename($_FILES["fileToUpload"]["name"])). " has been uploaded.";
+        // Uploads the file
+        $imageSuccess = move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $image);
 
+        //Checks if image upload was successful
+        if ($imageSuccess) {
           // Add the equipment to the database
           $equipment = $controllers->equipment()->create_equipment($args);
           redirect("inventory", ["message" => "Equipment successfully added!"]);
@@ -108,6 +105,7 @@
               <div class="form-outline mb-4">
                 <select required type="select" id="categoryId" name="categoryId" class="form-control form-control-lg" placeholder="Equipment category">
                   <option value="" disabled selected>Select a category</option>
+                  <!-- Loops through each category and adds it as an option -->
                   <?php foreach ($categories as $category): ?>
                     <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
                   <?php endforeach; ?>
@@ -118,6 +116,7 @@
               <div class="form-outline mb-4">
                 <select required type="select" id="supplierId" name="supplierId" class="form-control form-control-lg" placeholder="Equipment supplier">
                   <option value="" disabled selected>Select a supplier</option>
+                  <!-- Loops through each supplier and adds it as an option -->
                   <?php foreach ($suppliers as $supplier): ?>
                     <option value="<?= $supplier['id'] ?>"><?= $supplier['name'] ?></option>
                   <?php endforeach; ?>
@@ -126,7 +125,8 @@
               </div>
 
               <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Add Equipment</button>
-
+              
+              <!-- Displays a message if $message is not empty -->
               <?php if ($message): ?>
                 <div class="alert alert-danger mt-4">
                   <?= $message ?? '' ?>

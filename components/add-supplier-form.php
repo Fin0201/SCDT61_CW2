@@ -67,12 +67,12 @@
 
               <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Add supplier</button>
 
+              <!-- Displays a message if $message is not empty -->
               <?php if ($message): ?>
                 <div class="alert alert-danger mt-4">
                   <?= $message ?? '' ?>
                 </div>
               <?php endif ?>
-
             </div>
           </div>
         </div>
